@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convocado: Propuesta Agéntica y Flujos de Solución</title>
+  <meta name="description" content="Landing page del Grupo 13 para la startup Convocado. Presentación de dos propuestas agénticas, diagramas de flujo interactivos en CSS con tarjetas flotantes, demo y detalles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('convocado-theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Barra Superior de Navegación y Accesibilidad -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <div class="brand-identity">
+        <img src="assets/logo_convocado.webp" alt="Logotipo oficial de Convocado" class="brand-logo" width="44" height="55">
+        <div class="brand-titles">
+          <span class="brand-name">Convocado</span>
+          <span class="brand-badge">Grupo 13</span>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#contexto" class="nav-link">Startup</a></li>
+          <li><a href="#propuesta-1" class="nav-link">Regla: 1</a></li>
+          <li><a href="#propuesta-2" class="nav-link">Regla: 2</a></li>
+          <li><a href="#demo" class="nav-link">Demo Visual</a></li>
+          <li><a href="#simulador" class="nav-link">Simulador</a></li>
+          <li><a href="#sobre-nosotros" class="nav-link">Sobre Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Cambiar entre modo claro y modo nocturno" aria-pressed="false">
+          <!-- Icono Sol SVG -->
+          <svg class="svg-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Icono Luna SVG -->
+          <svg class="svg-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span class="theme-text">Modo</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-layout">
+
+    <!-- Sección Hero: Presentación Institucional y Académica -->
+    <section id="contexto" class="hero-section" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="academic-tag">
+            <span class="tag-dot" aria-hidden="true"></span>
+            <span>IFTS 16 + IFTS 29 · Práctica de Cierre 2026</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-title">
+            Conexión de equipos deportivos mediante soluciones agénticas
+          </h1>
+
+          <p class="hero-lead">
+            Diseño e interpretación de requerimientos lógicos para la startup Convocado. Transformamos sentencias proposicionales en flujos de decisión autónomos con supervisión humana.
+          </p>
+
+          <div class="meta-card-group">
+            <div class="meta-pill">
+              <span class="meta-label">Bloque Asignado:</span>
+              <strong class="meta-val">Búsqueda y solicitud (S08.A)</strong>
+            </div>
+            <div class="meta-pill">
+              <span class="meta-label">Categoría:</span>
+              <strong class="meta-val">Deportes y conexión de equipos</strong>
+            </div>
+            <div class="meta-pill">
+              <span class="meta-label">Equipo de Desarrollo:</span>
+              <strong class="meta-val">IFTS 29 · Grupo 13</strong>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#propuesta-1" class="btn btn-primary">Explorar Regla: 1</a>
+            <a href="#propuesta-2" class="btn btn-secondary">Explorar Regla: 2</a>
+          </div>
+        </div>
+
+        <div class="hero-aside">
+          <div class="startup-card">
+            <div class="startup-header">
+              <div class="logo-box">
+                <img src="assets/logo_convocado.webp" alt="Logo de Convocado" class="startup-logo-img">
+              </div>
+              <div>
+                <h2 class="startup-name">Convocado</h2>
+                <span class="startup-sub">Red Deportiva Comunitaria</span>
+              </div>
+            </div>
+
+            <div class="startup-body">
+              <h3 class="startup-section-title">Objetivo de la Startup</h3>
+              <p class="startup-desc">
+                Plataforma colaborativa para que jugadores encuentren equipos y soliciten participar en partidos y encuentros deportivos de manera ágil y geolocalizada.
+              </p>
+
+              <div class="origin-banner">
+                <div class="origin-icon" aria-hidden="true">
+                  <!-- Icono Institucional SVG -->
+                  <svg class="svg-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M3 10h18"></path>
+                    <path d="M5 6l7-3 7 3"></path>
+                    <path d="M4 10v11"></path>
+                    <path d="M20 10v11"></path>
+                    <path d="M8 14v4"></path>
+                    <path d="M12 14v4"></path>
+                    <path d="M16 14v4"></path>
+                  </svg>
+                </div>
+                <div class="origin-text">
+                  <strong>Reconocimiento de Autoría</strong>
+                  <p>
+                    Startup y reglas lógicas diseñadas originalmente por estudiantes del IFTS 16. La propuesta de arquitectura agéntica e interfaz web fue elaborada por estudiantes del IFTS 29.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Regla 1: Búsqueda y Opciones Cercanas -->
+    <section id="propuesta-1" class="solution-section" data-accent="blue" aria-labelledby="r1-heading" tabindex="-1">
+      <div class="container">
+        
+        <div class="section-badge anim-fade-up">
+          <span>Sentencia 1</span>
+          <span>Regla: 1</span>
+        </div>
+
+        <div class="rule-card anim-fade-left anim-delay-1">
+          <div class="rule-header">
+            <span class="rule-kicker">Redacción original asignada por el docente</span>
+            <blockquote class="rule-quote" tabindex="0">
+              «Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.»
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="proposal-overview">
+          <h2 id="r1-heading" class="proposal-title anim-fade-up anim-delay-2" tabindex="0">
+            <span class="animated-underline">Solución Agéntica 1: Explorador Inteligente de Partidos de Proximidad</span>
+          </h2>
+          <p class="proposal-benefit anim-fade-up anim-delay-3" tabindex="0">
+            El agente scout deportivo analiza en tiempo real la disponibilidad de vacantes y calcula distancias exactas mediante servicios de geolocalización. Esto permite al jugador visualizar de inmediato únicamente los encuentros vigentes y accesibles sin saturación de opciones no compatibles. Además, el agente asiste proactivamente cuando no existen partidos en el radio inmediato sugiriendo radios alternativos.
+          </p>
+        </div>
+
+        <!-- Diagrama de Flujo Interactivo en CSS Puro (Regla 1) -->
+        <div class="diagram-wrapper anim-fade-up anim-delay-4" aria-label="Diagrama de flujo interactivo de la solución 1">
+          <div class="diagram-card">
+            <div class="diagram-topbar">
+              <span class="diagram-badge">Diagrama Interactivo en CSS</span>
+              <span class="diagram-caption">Recorrido del Agente · Regla R1</span>
+            </div>
+
+            <div class="interactive-diagram" data-diagram="r1">
+              <div class="diagram-guide-pill">
+                <span class="guide-icon">
+                  <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+                    <path d="M13 13l6 6"></path>
+                  </svg>
+                </span>
+                <span>Pasa el cursor o haz clic en cualquier nodo para abrir su detalle completo</span>
+              </div>
+
+              <div class="diagram-flow-grid">
+                
+                <!-- Nivel 1: Inicio -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-start" data-node-id="r1-start">
+                    <span class="d-tag">Inicio</span>
+                    <strong class="d-title">Solicitud de Búsqueda</strong>
+                    <span class="d-sub">Jugador ingresa fecha deseada y activa su ubicación</span>
+                  </button>
+                </div>
+
+                <div class="diagram-arrow" aria-hidden="true">
+                  <span class="arrow-stem"></span>
+                  <span class="arrow-tip">↓</span>
+                </div>
+
+                <!-- Nivel 2: Herramientas del Agente -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-tools" data-node-id="r1-tools">
+                    <span class="d-tag tag-blue">Herramientas del Agente</span>
+                    <strong class="d-title">Geolocalización y Registro de Canchas</strong>
+                    <span class="d-sub">Calcula distancias exactas y valida disponibilidad de vacantes</span>
+                  </button>
+                </div>
+
+                <div class="diagram-arrow" aria-hidden="true">
+                  <span class="arrow-stem"></span>
+                  <span class="arrow-tip">↓</span>
+                </div>
+
+                <!-- Nivel 3: Decisión Principal -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-decision" data-node-id="r1-decision">
+                    <span class="d-tag tag-blue">Evaluación de Regla</span>
+                    <strong class="d-title">¿Tiene lugar Y fecha coincide Y distancia menor a 10 km?</strong>
+                    <span class="d-sub">Evaluación simultánea de las tres condiciones de la sentencia</span>
+                  </button>
+                </div>
+
+                <!-- Nivel 4: Ramas SÍ y NO en Paralelo -->
+                <div class="diagram-branches-row">
+                  
+                  <!-- Rama SÍ -->
+                  <div class="diagram-branch-col">
+                    <div class="branch-pill pill-yes">SÍ: Se cumplen todas</div>
+                    
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-action" data-node-id="r1-action-yes">
+                      <span class="d-tag tag-green">Acción Obligatoria</span>
+                      <strong class="d-title">Mostrar en Opciones Cercanas</strong>
+                      <span class="d-sub">El equipo se incorpora al listado visible de la aplicación</span>
+                    </button>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-end node-end-yes" data-node-id="r1-end-yes">
+                      <span class="d-tag tag-green">Fin del Flujo</span>
+                      <strong class="d-title">Visualización Completa</strong>
+                      <span class="d-sub">El deportista puede revisar la ficha y postularse</span>
+                    </button>
+                  </div>
+
+                  <!-- Rama NO -->
+                  <div class="diagram-branch-col">
+                    <div class="branch-pill pill-no">NO: Falla alguna condición</div>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-alternative" data-node-id="r1-action-no">
+                      <span class="d-tag tag-red">Propuesta de Diseño</span>
+                      <strong class="d-title">Exclusión con Sugerencias Asistidas</strong>
+                      <span class="d-sub">No muestra en cercanas. Ofrece ampliar radio o lista de espera</span>
+                    </button>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-end node-end-no" data-node-id="r1-end-no">
+                      <span class="d-tag tag-red">Fin del Flujo</span>
+                      <strong class="d-title">Esperar o Ajustar Parámetros</strong>
+                      <span class="d-sub">El jugador decide si amplía radio o activa alertas</span>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Leyenda Visual del Diagrama -->
+            <div class="diagram-legend">
+              <div class="legend-item">
+                <span class="legend-bullet bullet-blue" aria-hidden="true"></span>
+                <span>Procesamiento y Evaluación Agéntica</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-green" aria-hidden="true"></span>
+                <span>Rama SÍ: Acción de la Regla (IFTS 16)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-red" aria-hidden="true"></span>
+                <span>Rama NO: Excepciones Asistidas (Grupo 13)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Desplegables de Detalle Técnico R1 -->
+        <div class="details-section">
+          <h3 class="details-heading">Detalles de la Solución 1</h3>
+
+          <div class="accordion-group" data-accordion="r1">
+
+            <!-- Item 1 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r1-trig-1" aria-controls="r1-panel-1">
+                <span class="accordion-title">Datos que ingresan al sistema</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r1-panel-1" class="accordion-panel" role="region" aria-labelledby="r1-trig-1" hidden>
+                <div class="panel-body">
+                  <p>Para ejecutar esta solución, el agente requiere tres fuentes de información precisas:</p>
+                  <div class="data-blocks">
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Ubicación del Jugador</span>
+                        <span class="data-block-desc">Coordenadas geográficas del dispositivo con consentimiento del usuario.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Fecha Buscada</span>
+                        <span class="data-block-desc">Día y franja horaria en la que el deportista desea disputar el encuentro.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                          <circle cx="9" cy="7" r="4"></circle>
+                          <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                          <path d="M16 3.13a4 4 0 010 7.75"></path>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Registro de Equipos</span>
+                        <span class="data-block-desc">Base de datos de encuentros con fecha, sede y cupos disponibles actualizados al instante.</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r1-trig-2" aria-controls="r1-panel-2">
+                <span class="accordion-title">Temporalidad vigente y validación en doble capa</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r1-panel-2" class="accordion-panel" role="region" aria-labelledby="r1-trig-2" hidden>
+                <div class="panel-body">
+                  <p><strong>Principio de Temporalidad Vigente:</strong></p>
+                  <p>Una fecha buscada no puede ser una fecha vencida o pretérita respecto al momento de la consulta. Para garantizar la integridad temporal de las búsquedas, la propuesta aplica una estrategia de validación en dos capas:</p>
+                  <ul class="data-list">
+                    <li><strong>Capa de Interfaz en Front End:</strong> Los selectores de fecha restringen automáticamente los días pasados bloqueando su selección mediante atributos de límite temporal mínimo, aplicando el principio de prevención de errores de Nielsen.</li>
+                    <li><strong>Capa de Servicio y Agente:</strong> Sanitización estricta previa a la consulta para neutralizar cualquier inyección manual de parámetros con fechas anteriores a la fecha actual.</li>
+                  </ul>
+                  <div class="code-box">
+                    <code>(equipo.cupos_disponibles > 0) Y (partido.fecha == fecha_buscada) Y (distancia_km < 10) Y (fecha_buscada >= fecha_actual)</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r1-trig-3" aria-controls="r1-panel-3">
+                <span class="accordion-title">Herramientas que consulta el agente scout</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r1-panel-3" class="accordion-panel" role="region" aria-labelledby="r1-trig-3" hidden>
+                <div class="panel-body">
+                  <p>Para construir la solución sin depender de consultas manuales, el agente orquesta de forma autónoma dos servicios especializados:</p>
+                  <ul class="data-list">
+                    <li><strong>Herramienta de Geolocalización y Mapas:</strong> Computa la matriz de distancias viales entre el origen del usuario y cada predio deportivo para discriminar con precisión si se encuentra por debajo del radio de diez kilómetros.</li>
+                    <li><strong>Herramienta de Agenda y Convocatorias:</strong> Consulta el registro central de partidos activos para comprobar que el día coincida y que la vacante esté libre al momento de la petición.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r1-trig-4" aria-controls="r1-panel-4">
+                <span class="accordion-title">Respuestas diferenciadas en el camino del NO</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r1-panel-4" class="accordion-panel" role="region" aria-labelledby="r1-trig-4" hidden>
+                <div class="panel-body">
+                  <p>Cuando una o más condiciones no se cumplen, la regla normativa ordena no mostrar el equipo en opciones cercanas. Como aporte de diseño (Nivel Propone), el agente no abandona la búsqueda y despliega tres respuestas especializadas según el motivo:</p>
+                  <ul class="data-list">
+                    <li><strong>Si falla por distancia mayor a diez kilómetros:</strong> El agente detecta sedes en zonas aledañas y sugiere ampliar el radio a doce o quince kilómetros.</li>
+                    <li><strong>Si falla por fecha sin partidos:</strong> El agente analiza los días subsiguientes y sugiere fechas cercanas con alta convocatoria deportiva.</li>
+                    <li><strong>Si falla por cupo completado:</strong> El agente ofrece activar una lista de espera inteligente para notificar al jugador si algún integrante cancela su asistencia a último momento.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección Regla 2: Solicitud y Aprobación al Capitán -->
+    <section id="propuesta-2" class="solution-section alt-bg" data-accent="green" aria-labelledby="r2-heading" tabindex="-1">
+      <div class="container">
+        
+        <div class="section-badge badge-accent anim-fade-up">
+          <span>Sentencia 2</span>
+          <span>Regla: 2</span>
+        </div>
+
+        <div class="rule-card anim-fade-left anim-delay-1">
+          <div class="rule-header">
+            <span class="rule-kicker">Redacción original asignada por el docente</span>
+            <blockquote class="rule-quote" tabindex="0">
+              «Si el equipo tiene lugar, está a menos de diez kilómetros, el jugador tiene valoración de al menos cuatro y autoriza la solicitud, el sistema envía esa solicitud al capitán.»
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="proposal-overview">
+          <h2 id="r2-heading" class="proposal-title anim-fade-up anim-delay-2" tabindex="0">
+            <span class="animated-underline">Solución Agéntica 2: Validador de Postulaciones y Moderador Deportivo</span>
+          </h2>
+          <p class="proposal-benefit anim-fade-up anim-delay-3" tabindex="0">
+            Un agente mediador asegura la calidad y seguridad de los encuentros filtrando de forma automática las postulaciones según distancia, cupo y reputación comunitaria de 4 o más puntos. Facilita la comunicación directa con el capitán y gestiona revisiones especiales cuando no se alcanzan los parámetros estándar.
+          </p>
+        </div>
+
+        <!-- Diagrama de Flujo Interactivo en CSS Puro (Regla 2) -->
+        <div class="diagram-wrapper anim-fade-up anim-delay-4" aria-label="Diagrama de flujo interactivo de la solución 2">
+          <div class="diagram-card">
+            <div class="diagram-topbar">
+              <span class="diagram-badge badge-accent-top">Diagrama Interactivo en CSS</span>
+              <span class="diagram-caption">Recorrido del Agente · Regla R2</span>
+            </div>
+
+            <div class="interactive-diagram" data-diagram="r2">
+              <div class="diagram-guide-pill">
+                <span class="guide-icon">
+                  <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+                    <path d="M13 13l6 6"></path>
+                  </svg>
+                </span>
+                <span>Pasa el cursor o haz clic en cualquier nodo para abrir su detalle completo</span>
+              </div>
+
+              <div class="diagram-flow-grid">
+                
+                <!-- Nivel 1: Inicio -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-start" data-node-id="r2-start">
+                    <span class="d-tag">Inicio</span>
+                    <strong class="d-title">Solicitud de Postulación</strong>
+                    <span class="d-sub">El jugador manifiesta su voluntad expresa de incorporarse al partido</span>
+                  </button>
+                </div>
+
+                <div class="diagram-arrow" aria-hidden="true">
+                  <span class="arrow-stem"></span>
+                  <span class="arrow-tip">↓</span>
+                </div>
+
+                <!-- Nivel 2: Herramientas del Agente -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-tools" data-node-id="r2-tools">
+                    <span class="d-tag tag-blue">Herramientas del Agente</span>
+                    <strong class="d-title">Auditoría de Perfil, Vacante y Reputación</strong>
+                    <span class="d-sub">Consulta historial deportivo, distancia y cupo disponible en tiempo real</span>
+                  </button>
+                </div>
+
+                <div class="diagram-arrow" aria-hidden="true">
+                  <span class="arrow-stem"></span>
+                  <span class="arrow-tip">↓</span>
+                </div>
+
+                <!-- Nivel 3: Decisión Cuádruple -->
+                <div class="diagram-row">
+                  <button type="button" class="diagram-node node-decision" data-node-id="r2-decision">
+                    <span class="d-tag tag-blue">Evaluación de Regla</span>
+                    <strong class="d-title">¿Lugar Y Distancia menor a 10 km Y Valoración mayor o igual a 4?</strong>
+                    <span class="d-sub">Comprobación simultánea de los parámetros exigidos por la sentencia</span>
+                  </button>
+                </div>
+
+                <!-- Nivel 4: Ramas SÍ y NO en Paralelo -->
+                <div class="diagram-branches-row">
+                  
+                  <!-- Rama SÍ -->
+                  <div class="diagram-branch-col">
+                    <div class="branch-pill pill-yes">SÍ: Cumple las condiciones</div>
+                    
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-action" data-node-id="r2-action-yes">
+                      <span class="d-tag tag-green">Acción Obligatoria</span>
+                      <strong class="d-title">Enviar Alerta al Capitán</strong>
+                      <span class="d-sub">Despacho reactivo de notificación prioritaria con ficha técnica del jugador</span>
+                    </button>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-end node-end-yes" data-node-id="r2-end-yes">
+                      <span class="d-tag tag-green">Fin del Flujo</span>
+                      <strong class="d-title">Solicitud Entregada</strong>
+                      <span class="d-sub">La postulación queda pendiente de aceptación final por el capitán</span>
+                    </button>
+                  </div>
+
+                  <!-- Rama NO: Nodo Amplio de Intervención Humana -->
+                  <div class="diagram-branch-col">
+                    <div class="branch-pill pill-no">NO: Falla alguna condición</div>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-human-spacious" data-node-id="r2-action-no">
+                      <span class="d-tag tag-red">Intervención Humana y Excepciones</span>
+                      <strong class="d-title">Revisión Manual del Capitán o Freno Preventivo</strong>
+                      <span class="d-sub">
+                        Si la valoración es menor a cuatro puntos, el sistema no bloquea al usuario: ofrece enviar una solicitud excepcional para que el capitán decida manualmente sin comprometer el cupo directo. En caso de pérdida concurrente de vacante, frena el despacho.
+                      </span>
+                    </button>
+
+                    <div class="diagram-arrow" aria-hidden="true">
+                      <span class="arrow-stem"></span>
+                      <span class="arrow-tip">↓</span>
+                    </div>
+
+                    <button type="button" class="diagram-node node-end node-end-no" data-node-id="r2-end-no">
+                      <span class="d-tag tag-red">Fin del Flujo</span>
+                      <strong class="d-title">Resolución Asistida</strong>
+                      <span class="d-sub">No se reserva lugar hasta contar con aprobación humana explícita</span>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Leyenda Visual del Diagrama -->
+            <div class="diagram-legend">
+              <div class="legend-item">
+                <span class="legend-bullet bullet-blue" aria-hidden="true"></span>
+                <span>Auditoría y Validación Lógica</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-green" aria-hidden="true"></span>
+                <span>Rama SÍ: Despacho al Capitán (IFTS 16)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-red" aria-hidden="true"></span>
+                <span>Rama NO: Intervención Humana (Grupo 13)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Desplegables de Detalle Técnico R2 -->
+        <div class="details-section">
+          <h3 class="details-heading">Detalles de la Solución 2</h3>
+
+          <div class="accordion-group" data-accordion="r2">
+
+            <!-- Item 1 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r2-trig-1" aria-controls="r2-panel-1">
+                <span class="accordion-title">Datos requeridos para la validación</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r2-panel-1" class="accordion-panel" role="region" aria-labelledby="r2-trig-1" hidden>
+                <div class="panel-body">
+                  <p>Esta operación involucra los siguientes puntos de verificación indispensables:</p>
+                  <div class="data-blocks">
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                          <circle cx="9" cy="7" r="4"></circle>
+                          <line x1="19" y1="8" x2="19" y2="14"></line>
+                          <line x1="22" y1="11" x2="16" y2="11"></line>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Estado de Cupo</span>
+                        <span class="data-block-desc">Verificación de que la vacante no fue ocupada por otro usuario al momento de la solicitud.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="2" y1="12" x2="22" y2="12"></line>
+                          <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Distancia Física</span>
+                        <span class="data-block-desc">La distancia debe ser estrictamente menor a diez kilómetros de la sede del encuentro.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Valoración del Jugador</span>
+                        <span class="data-block-desc">Calificación comunitaria histórica con un piso mínimo de cuatro puntos sobre cinco.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                          <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Canal del Capitán</span>
+                        <span class="data-block-desc">Identificador y bandeja de alertas activa para el despacho reactivo de la notificación.</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r2-trig-2" aria-controls="r2-panel-2">
+                <span class="accordion-title">Despacho reactivo de alerta al capitán</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r2-panel-2" class="accordion-panel" role="region" aria-labelledby="r2-trig-2" hidden>
+                <div class="panel-body">
+                  <p><strong>Significado de «enviar la solicitud al capitán»:</strong></p>
+                  <p>No se trata únicamente de guardar un registro estático en una base de datos. En nuestra propuesta agéntica, representa el disparo de un <strong>evento asíncrono de alerta prioritaria</strong>. El agente construye una notificación con los datos esenciales (nombre del jugador, valoración de 4 o más estrellas y distancia exacta) para que el capitán reciba el aviso en tiempo real en su dispositivo y pueda decidir en un solo toque.</p>
+                  <div class="code-box">
+                    <code>evento = DespacharAlertaPrioritaria(capitan_id, ficha_jugador, estado="pendiente")</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r2-trig-3" aria-controls="r2-panel-3">
+                <span class="accordion-title">Herramientas que consulta el agente moderador</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r2-panel-3" class="accordion-panel" role="region" aria-labelledby="r2-trig-3" hidden>
+                <div class="panel-body">
+                  <p>Para auditar el cumplimiento objetivo antes de notificar al capitán, el agente consulta dos herramientas clave:</p>
+                  <ul class="data-list">
+                    <li><strong>Servicio de Reputación y Perfil:</strong> Extrae antecedentes comunitarios, índice de asistencia y calificación de conducta para verificar el piso normativo de cuatro puntos.</li>
+                    <li><strong>Servicio de Mensajería y Alertas Push:</strong> Canaliza la notificación en tiempo real a la aplicación del capitán con acciones rápidas de aceptación.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false" id="r2-trig-4" aria-controls="r2-panel-4">
+                <span class="accordion-title">Casos límite, excepciones e intervención humana</span>
+                <span class="accordion-chevron" aria-hidden="true"></span>
+              </button>
+              <div id="r2-panel-4" class="accordion-panel" role="region" aria-labelledby="r2-trig-4" hidden>
+                <div class="panel-body">
+                  <p><strong>Caso límite 1: Valoración menor a cuatro puntos (Intervención Humana)</strong></p>
+                  <p>La regla prohíbe el envío estándar. Como decisión de diseño, el sistema no bloquea definitivamente al jugador: le informa con claridad que su perfil no califica para envío directo y le ofrece la alternativa de enviar una solicitud con justificación para evaluación manual del capitán.</p>
+                  <p><strong>Caso límite 2: Pérdida simultánea de vacante por concurrencia</strong></p>
+                  <p>Si dos jugadores postulan al mismo tiempo y el cupo se completa justo antes del envío, el agente detecta el conflicto de concurrencia en tiempo real, frena el despacho para no generar falsas expectativas y reubica inmediatamente al jugador en el buscador de opciones.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección Demo Visual: Dispositivos Móviles (Jugador vs Capitán) -->
+    <section id="demo" class="demo-section" data-accent="gold" aria-labelledby="demo-heading">
+      <div class="container">
+        <div class="demo-header">
+          <div class="section-badge anim-fade-up">Demostración de Interfaz</div>
+          <h2 id="demo-heading" class="demo-title anim-fade-up anim-delay-1">
+            <span class="animated-underline">Simulación Visual de Interfaz Móvil</span>
+          </h2>
+          <p class="demo-sub anim-fade-up anim-delay-2">
+            Recorrido visual de las dos caras del sistema: la búsqueda del jugador (Regla R1) y la recepción reactiva de la alerta por parte del capitán (Regla R2).
+          </p>
+        </div>
+
+        <div class="devices-grid anim-fade-up anim-delay-3">
+          
+          <!-- Teléfono 1: Vista del Jugador (R1) -->
+          <div class="phone-card">
+            <div class="phone-label">
+              <span class="phone-badge">Vista 1 · Jugador</span>
+              <span class="phone-caption">Opciones Cercanas (R1)</span>
+            </div>
+
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-statusbar">
+                <span class="phone-time">09:41</span>
+                <div class="phone-icons" aria-hidden="true">
+                  <svg class="svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 20h.01"></path>
+                    <path d="M7 20v-4"></path>
+                    <path d="M12 20v-8"></path>
+                    <path d="M17 20V4"></path>
+                  </svg>
+                  <svg class="svg-icon" width="16" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="16" height="12" rx="2" ry="2"></rect>
+                    <line x1="22" y1="10" x2="22" y2="14"></line>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="phone-screen">
+                <div class="phone-app-header">
+                  <span class="app-brand">Convocado</span>
+                  <span class="app-chip">Partidos</span>
+                </div>
+
+                <div class="app-search-box">
+                  <div class="search-field">
+                    <span class="field-label">Fecha del encuentro:</span>
+                    <div class="date-input-preview">
+                      <span class="date-val">28 Noviembre 2026</span>
+                      <span class="date-badge">Vigente</span>
+                    </div>
+                  </div>
+
+                  <div class="search-filter-tag">
+                    <span class="tag-icon">
+                      <svg class="svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </span>
+                    <span>Radio activo: Menor a 10 km</span>
+                  </div>
+                </div>
+
+                <div class="app-results-title">Opciones Cercanas Encontradas (2)</div>
+
+                <div class="app-match-card card-featured">
+                  <div class="match-head">
+                    <strong class="match-team">Deportivo Central</strong>
+                    <span class="match-dist">6.2 km</span>
+                  </div>
+                  <div class="match-info">Viernes 20:00 hs · Cancha 3</div>
+                  <div class="match-footer">
+                    <span class="match-spot">1 cupo libre</span>
+                    <button type="button" class="app-action-btn" id="demo-postular-btn">Postularme</button>
+                  </div>
+                </div>
+
+                <div class="app-match-card">
+                  <div class="match-head">
+                    <strong class="match-team">Atlético Norte</strong>
+                    <span class="match-dist">8.5 km</span>
+                  </div>
+                  <div class="match-info">Sábado 18:30 hs · Sede Palermo</div>
+                  <div class="match-footer">
+                    <span class="match-spot">2 cupos libres</span>
+                    <button type="button" class="app-action-btn-outline">Ver detalle</button>
+                  </div>
+                </div>
+
+                <div class="app-notice" id="demo-player-feedback">
+                  <span>✓ Regla R1 aplicada: sedes filtradas dentro de 10 km con fecha vigente.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Teléfono 2: Vista del Capitán (R2) -->
+          <div class="phone-card">
+            <div class="phone-label">
+              <span class="phone-badge badge-accent-top">Vista 2 · Capitán</span>
+              <span class="phone-caption">Alerta Recibida (R2)</span>
+            </div>
+
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-statusbar">
+                <span class="phone-time">09:42</span>
+                <div class="phone-icons" aria-hidden="true">
+                  <svg class="svg-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                  </svg>
+                  <svg class="svg-icon" width="16" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="16" height="12" rx="2" ry="2"></rect>
+                    <line x1="22" y1="10" x2="22" y2="14"></line>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="phone-screen">
+                <div class="phone-app-header">
+                  <span class="app-brand">Convocado Capitanes</span>
+                  <span class="app-chip chip-captain">Bandeja</span>
+                </div>
+
+                <div class="captain-alert-card" id="demo-captain-alert">
+                  <div class="alert-top">
+                    <span class="alert-pulse" aria-hidden="true"></span>
+                    <span class="alert-title">Nueva Solicitud Entrante</span>
+                  </div>
+
+                  <div class="applicant-box">
+                    <div class="applicant-avatar">LM</div>
+                    <div class="applicant-info">
+                      <strong class="applicant-name">Lucas M.</strong>
+                      <span class="applicant-score">Valoración: 4.8 de 5 puntos</span>
+                    </div>
+                  </div>
+
+                  <div class="applicant-meta">
+                    <div class="meta-row">
+                      <span class="m-label">Distancia al partido:</span>
+                      <strong class="m-val">6.2 km</strong>
+                    </div>
+                    <div class="meta-row">
+                      <span class="m-label">Estado de la vacante:</span>
+                      <strong class="m-val text-green">1 cupo disponible</strong>
+                    </div>
+                    <div class="meta-row">
+                      <span class="m-label">Criterio R2:</span>
+                      <strong class="m-val text-green">Aprobación automática</strong>
+                    </div>
+                  </div>
+
+                  <div class="captain-actions">
+                    <button type="button" class="btn-captain-accept" id="demo-accept-btn">Aceptar en el Equipo</button>
+                    <button type="button" class="btn-captain-info">Ver Historial</button>
+                  </div>
+                </div>
+
+                <div class="captain-empty-note" id="demo-captain-accepted" hidden>
+                  <div class="check-circle">✓</div>
+                  <strong>¡Jugador Confirmado!</strong>
+                  <p>Lucas M. fue incorporado al partido. El cupo quedó cubierto.</p>
+                </div>
+
+                <div class="app-notice">
+                  <span>✓ Regla R2 aplicada: despacho reactivo de alerta con datos completos.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Interactiva: Simulador en Vivo de las Sentencias -->
+    <section id="simulador" class="simulator-section" data-accent="brand" aria-labelledby="sim-title">
+      <div class="container">
+        
+        <div class="sim-header">
+          <div class="section-badge anim-fade-up">Herramienta Interactiva</div>
+          <h2 id="sim-title" class="sim-heading anim-fade-up anim-delay-1">
+            <span class="animated-underline">Simulador en Vivo de Reglas Proposicionales</span>
+          </h2>
+          <p class="sim-sub anim-fade-up anim-delay-2">
+            Modifica los parámetros o utiliza los botones de prueba rápida para comprobar cómo respondería el sistema agéntico en tiempo real.
+          </p>
+
+          <!-- Botones de Prueba Rápida -->
+          <div class="preset-group anim-fade-up anim-delay-3">
+            <span class="preset-label">Pruebas Rápidas con 1 Clic:</span>
+            <div class="preset-buttons">
+              <button type="button" class="preset-btn" id="preset-ideal">Caso Exitoso Completo</button>
+              <button type="button" class="preset-btn" id="preset-radio">Caso Límite: Fuera de Radio</button>
+              <button type="button" class="preset-btn" id="preset-revision">Caso Límite: Revisión Manual</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="simulator-grid anim-fade-up anim-delay-4">
+          
+          <!-- Panel de Control del Simulador -->
+          <div class="sim-card sim-controls">
+            <h3 class="sim-card-title">Parámetros de Entrada</h3>
+
+            <form id="simulator-form" class="sim-form" onsubmit="event.preventDefault();">
+              
+              <div class="form-group">
+                <label for="sim-lugar" class="form-label">Disponibilidad de Lugar:</label>
+                <select id="sim-lugar" class="form-select">
+                  <option value="si" selected>Tiene lugar disponible</option>
+                  <option value="no">Cupo agotado (Sin lugar)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sim-fecha" class="form-label">Coincidencia de Fecha:</label>
+                <select id="sim-fecha" class="form-select">
+                  <option value="si" selected>Coincide con la fecha buscada</option>
+                  <option value="no">Fecha diferente</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <div class="label-with-value">
+                  <label for="sim-distancia" class="form-label">Distancia al jugador:</label>
+                  <span id="distancia-val" class="slider-val">6 km</span>
+                </div>
+                <input type="range" id="sim-distancia" min="1" max="25" value="6" step="1" class="form-range">
+                <div class="range-labels">
+                  <span>1 km</span>
+                  <span class="range-limit">Límite: 10 km</span>
+                  <span>25 km</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="label-with-value">
+                  <label for="sim-valoracion" class="form-label">Valoración del jugador:</label>
+                  <span id="valoracion-val" class="slider-val">4.5 puntos</span>
+                </div>
+                <input type="range" id="sim-valoracion" min="1.0" max="5.0" value="4.5" step="0.1" class="form-range">
+                <div class="range-labels">
+                  <span>1.0</span>
+                  <span class="range-limit">Mínimo: 4.0</span>
+                  <span>5.0</span>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Panel de Resultados del Simulador -->
+          <div class="sim-card sim-results">
+            <h3 class="sim-card-title">Evaluación del Sistema</h3>
+
+            <!-- Evaluación Regla 1 -->
+            <div id="sim-res-r1" class="result-box result-success">
+              <div class="result-head">
+                <span class="result-rule">Regla R1 · Opciones Cercanas</span>
+                <span class="result-status-badge badge-ok">MUESTRA</span>
+              </div>
+              <p class="result-text" id="r1-result-message">
+                El equipo tiene cupo, la fecha coincide y la distancia es menor a 10 km. El sistema lo muestra en las opciones cercanas.
+              </p>
+            </div>
+
+            <!-- Evaluación Regla 2 -->
+            <div id="sim-res-r2" class="result-box result-success">
+              <div class="result-head">
+                <span class="result-rule">Regla R2 · Envío al Capitán</span>
+                <span class="result-status-badge badge-ok">ENVÍA</span>
+              </div>
+              <p class="result-text" id="r2-result-message">
+                Cumple cupo, distancia menor a 10 km y valoración mayor o igual a 4.0. La solicitud es enviada al capitán.
+              </p>
+            </div>
+
+            <div class="sim-audit-trail">
+              <h4 class="audit-title">Registro de Variables Activas:</h4>
+              <ul class="audit-list" id="audit-list">
+                <!-- Se actualiza por JavaScript -->
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sección de Créditos del Proyecto y Grupo -->
+    <section class="team-section" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="team-card anim-fade-up">
+          <div class="team-content">
+            <span class="section-badge">Equipo IFTS 29</span>
+            <h2 id="team-heading" class="team-title">Trabajo Práctico 3 · Grupo 13</h2>
+            <p class="team-desc">
+              Esta landing page fue desarrollada bajo la modalidad de construcción 100% agéntica orientada por directivas de ingeniería de software, arquitectura Front End y principios de diseño UX.
+            </p>
+            
+            <div class="principles-grid">
+              <div class="principle-item">
+                <strong class="principle-title">Leyes de UX Aplicadas</strong>
+                <p>Jakob, Fitts, Hick, Miller, Proximidad y Región Común para una navegación intuitiva y accesible.</p>
+              </div>
+              <div class="principle-item">
+                <strong class="principle-title">Identidad Visual</strong>
+                <p>Paleta cromática sólida extraída del logotipo oficial de Convocado: verde bosque, amarillo ámbar y contraste puro.</p>
+              </div>
+              <div class="principle-item">
+                <strong class="principle-title">Metodología Agéntica</strong>
+                <p>Dirección y supervisión humana con código producido e iterado enteramente mediante agentes de IA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-nosotros" class="about-section" aria-labelledby="about-heading">
+      <div class="container">
+        <header class="about-header anim-fade-up">
+          <span class="section-badge">Nuestro equipo</span>
+          <h2 id="about-heading" class="about-title">Sobre Nosotros</h2>
+          <p class="about-intro">Conocé a las personas detrás de este proyecto.</p>
+        </header>
+
+        <div class="about-grid anim-fade-up anim-delay-2">
+          <article class="about-card">
+            <span class="about-icon" aria-hidden="true">
+              <svg class="svg-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+              </svg>
+            </span>
+            <h3 class="about-name">Nombre 1</h3>
+            <p class="about-description">Breve presentación para completar.</p>
+          </article>
+          <article class="about-card">
+            <span class="about-icon" aria-hidden="true">
+              <svg class="svg-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+              </svg>
+            </span>
+            <h3 class="about-name">Nombre 2</h3>
+            <p class="about-description">Breve presentación para completar.</p>
+          </article>
+          <article class="about-card">
+            <span class="about-icon" aria-hidden="true">
+              <svg class="svg-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+              </svg>
+            </span>
+            <h3 class="about-name">Nombre 3</h3>
+            <p class="about-description">Breve presentación para completar.</p>
+          </article>
+          <article class="about-card">
+            <span class="about-icon" aria-hidden="true">
+              <svg class="svg-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+              </svg>
+            </span>
+            <h3 class="about-name">Celina Tarn</h3>
+            <p class="about-description">Breve presentación para completar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página Institucional -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-content">
+      
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="assets/logo_convocado.webp" alt="Convocado" width="32" height="40">
+          <span class="footer-brand-title">Convocado</span>
+        </div>
+        <p class="footer-tagline">
+          Conexión deportiva y organización de partidos comunitarios.
+        </p>
+        <p class="footer-academic">
+          Trabajo Práctico Integrador 3 · Desarrollo de Sistemas Web · IFTS 29 · 2026.
+        </p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4 class="footer-heading">Navegación</h4>
+        <ul class="footer-nav">
+          <li><a href="#contexto">Presentación</a></li>
+          <li><a href="#propuesta-1">Regla: 1</a></li>
+          <li><a href="#propuesta-2">Regla: 2</a></li>
+          <li><a href="#demo">Demo Visual</a></li>
+          <li><a href="#simulador">Simulador en Vivo</a></li>
+          <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4 class="footer-heading">Legal y Académico</h4>
+        <ul class="footer-nav">
+          <li><button type="button" class="footer-modal-btn" data-modal="modal-terminos">Términos del Servicio</button></li>
+          <li><button type="button" class="footer-modal-btn" data-modal="modal-privacidad">Política de Privacidad</button></li>
+          <li><button type="button" class="footer-modal-btn" data-modal="modal-academico">Créditos de Autoría</button></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 Convocado. Proyecto académico para IFTS 29 sobre especificación de IFTS 16.</p>
+        <p class="footer-badge">Diseño 100% Agéntico · Mobile First</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Volver arriba" aria-hidden="true" tabindex="-1">
+    <svg class="svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5"></path>
+      <path d="m5 12 7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Pequeño Cartel Flotante Accesible para Detalle de Nodos del Diagrama -->
+  <dialog id="node-popover-dialog" class="node-popover-dialog" aria-labelledby="popover-node-title">
+    <div class="node-popover-card">
+      <div class="popover-header">
+        <div class="popover-title-wrap">
+          <span class="popover-tag" id="popover-node-tag">Información del Nodo</span>
+          <h4 class="popover-title" id="popover-node-title">Detalle Operativo</h4>
+        </div>
+        <button type="button" class="popover-close-btn" id="popover-close-btn" aria-label="Cerrar cartel de información">
+          <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="popover-body">
+        <div class="popover-field">
+          <strong>Información que ingresa:</strong>
+          <p id="popover-inputs"></p>
+        </div>
+        <div class="popover-field">
+          <strong>Herramientas orquestadas:</strong>
+          <p id="popover-tools"></p>
+        </div>
+        <div class="popover-field">
+          <strong>Descripción operativa:</strong>
+          <p id="popover-desc"></p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modales Accesibles de Términos y Privacidad -->
+  
+  <!-- Modal Términos del Servicio -->
+  <dialog id="modal-terminos" class="modal-dialog" aria-labelledby="modal-terminos-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-terminos-title" class="modal-title">Términos del Servicio</h3>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Cerrar ventana modal">
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>1. Naturaleza de la Plataforma</strong></p>
+        <p>Convocado es un entorno deportivo destinado a facilitar el contacto entre deportistas y capitanes de equipo para encuentros recreativos.</p>
+        <p><strong>2. Reglas de Convocatoria y Cupos</strong></p>
+        <p>La visualización de partidos cercanos y la admisión de solicitudes se encuentran sujetas a la existencia comprobada de vacantes reales, radio geográfico menor a diez kilómetros y calificación comunitaria igual o superior a cuatro puntos.</p>
+        <p><strong>3. Gestión Transparente</strong></p>
+        <p>La postulación se envía de forma directa cuando se cumplen los parámetros normativos de la comunidad.</p>
+        <p><strong>4. Alcance Académico</strong></p>
+        <p>Este sitio web constituye una propuesta conceptual elaborada en el marco de la cursada de Desarrollo de Sistemas Web del IFTS 29, basada en requerimientos lógicos del IFTS 16.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Entendido</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal Política de Privacidad -->
+  <dialog id="modal-privacidad" class="modal-dialog" aria-labelledby="modal-privacidad-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-privacidad-title" class="modal-title">Política de Privacidad</h3>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Cerrar ventana modal">
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>1. Tratamiento de Datos de Geolocalización</strong></p>
+        <p>Las coordenadas geográficas del usuario se procesan únicamente de manera local o efímera con el propósito de calcular la proximidad de los diez kilómetros requeridos por la regla R1. No se realiza rastreo permanente ni venta de datos a terceros.</p>
+        <p><strong>2. Valoración Comunitaria</strong></p>
+        <p>La calificación deportiva del jugador refleja antecedentes de juego limpio y puntualidad. Es accesible únicamente al capitán en el momento en que se formaliza una postulación válida.</p>
+        <p><strong>3. Almacenamiento Local de Preferencias</strong></p>
+        <p>El sitio utiliza el almacenamiento local del navegador exclusivamente para recordar la preferencia del usuario entre modo claro y modo nocturno.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal Créditos Académicos -->
+  <dialog id="modal-academico" class="modal-dialog" aria-labelledby="modal-academico-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-academico-title" class="modal-title">Créditos de Autoría y Colaboración</h3>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Cerrar ventana modal">
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Origen del Caso de Estudio:</strong></p>
+        <p>La concepción de la startup Convocado, su identidad visual y la redacción de sus condiciones operativas en lógica proposicional pertenecen a estudiantes del IFTS 16.</p>
+        <p><strong>Desarrollo Front End y Modelado Agéntico:</strong></p>
+        <p>La interpretación de requerimientos, diseño de soluciones agénticas, diagramas de flujo y desarrollo de esta interfaz web fue realizada por estudiantes de Desarrollo de Sistemas Web del IFTS 29, Grupo 13.</p>
+        <p><strong>Herramientas de Construcción:</strong></p>
+        <p>Desarrollo agéntico guiado por instrucciones iterativas mediante Antigravity con modelo Gemini 3.8 Flash.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Aceptar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
