@@ -84,6 +84,7 @@ npx serve .
 * Interactuar con los diagramas en CSS: hacer clic sobre cualquier nodo (Inicio, Herramientas, Decisión, Ramas) para observar cómo el inspector inferior detalla entradas, herramientas y acciones.
 * Interactuar con la demo de celulares: presionar «Postularme» en el teléfono del jugador y luego «Aceptar en el Equipo» en el teléfono del capitán.
 * Probar los 3 botones de presets del simulador (Caso Exitoso, Caso Límite Fuera de Radio y Caso Límite Revisión Manual).
+* Revisar la sección «¿Qué es Convocado?» entre el hero y la Regla 1: R1 y R2 quedan visibles en tarjetas, y los bloques 2 y 3 se despliegan con teclado o clic.
 * Desplazarse por la página para comprobar las entradas animadas, los subrayados y los acentos de color de cada sección. Las animaciones respetan la preferencia de movimiento reducido del sistema.
 * Revisar la sección «Sobre Nosotros» al final de la página y reemplazar los cuatro nombres y textos de ejemplo por los datos del equipo.
 * Desplegar los apartados técnicos mediante clic o teclado (Enter o Barra Espaciadora).

@@ -36,7 +36,7 @@
 
       <nav class="site-nav" aria-label="Navegación principal">
         <ul class="nav-links">
-          <li><a href="#contexto" class="nav-link">Startup</a></li>
+          <li><a href="#sobre-convocado" class="nav-link">Convocado</a></li>
           <li><a href="#propuesta-1" class="nav-link">Regla: 1</a></li>
           <li><a href="#propuesta-2" class="nav-link">Regla: 2</a></li>
           <li><a href="#demo" class="nav-link">Demo Visual</a></li>
@@ -73,6 +73,9 @@
 
     <!-- Sección Hero: Presentación Institucional y Académica -->
     <section id="contexto" class="hero-section" aria-labelledby="hero-title">
+      <video id="hero-video" class="hero-video" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+        <source src="assets/fondo_futbol.mp4" type="video/mp4">
+      </video>
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="academic-tag">
@@ -154,8 +157,98 @@
       </div>
     </section>
 
+    <section id="sobre-convocado" class="convocado-intro" aria-labelledby="convocado-intro-title">
+      <div class="container">
+        <header class="convocado-intro-header anim-fade-up">
+          <span class="intro-eyebrow">Deportes y conexión de equipos</span>
+          <h2 id="convocado-intro-title" class="convocado-intro-title">¿Qué es Convocado?</h2>
+          <p class="convocado-intro-copy">
+            Convocado es una red para que jugadores encuentren equipos y soliciten participar en partidos. La propuesta organiza ese recorrido en reglas claras: desde buscar un lugar cercano hasta revisar cupos y confirmar la asistencia.
+          </p>
+          <p class="intro-objective"><strong>Objetivo:</strong> conectar jugadores con equipos y facilitar su participación en partidos.</p>
+        </header>
+
+        <div class="intro-block-one anim-fade-up anim-delay-1">
+          <header class="intro-block-heading">
+            <span class="intro-block-number" aria-hidden="true">01</span>
+            <div>
+              <h3 class="intro-block-title">Búsqueda y solicitud</h3>
+              <p>Así encuentra un jugador un equipo y así llega su solicitud al capitán.</p>
+            </div>
+          </header>
+
+          <div class="intro-rules-grid">
+            <a class="intro-rule-card intro-rule-r1" href="#propuesta-1" aria-label="Ver el desarrollo de la Regla R1">
+              <span class="intro-rule-label">Regla R1 · Frase 1</span>
+              <blockquote class="intro-rule-quote">
+                Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.
+              </blockquote>
+              <div class="intro-rule-conditions" aria-label="Condiciones de la regla R1">
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Hay lugar</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Coincide la fecha</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> A menos de 10 km</span>
+              </div>
+              <p class="intro-rule-result result-nearby">Aparece entre las opciones cercanas</p>
+              <span class="intro-rule-link" aria-hidden="true">Ver desarrollo de la regla <span>→</span></span>
+            </a>
+
+            <a class="intro-rule-card intro-rule-r2" href="#propuesta-2" aria-label="Ver el desarrollo de la Regla R2">
+              <span class="intro-rule-label">Regla R2 · Frase 2</span>
+              <blockquote class="intro-rule-quote">
+                Si el equipo tiene lugar, está a menos de diez kilómetros, el jugador tiene valoración de al menos cuatro y autoriza la solicitud, el sistema envía esa solicitud al capitán.
+              </blockquote>
+              <div class="intro-rule-conditions" aria-label="Condiciones de la regla R2">
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Hay lugar</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> A menos de 10 km</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Valoración ≥ 4</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Autoriza</span>
+              </div>
+              <p class="intro-rule-result result-captain">Se envía al capitán</p>
+              <span class="intro-rule-link" aria-hidden="true">Ver desarrollo de la regla <span>→</span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="intro-followup-grid">
+          <details class="intro-followup-block anim-fade-up anim-delay-2">
+            <summary>
+              <span class="followup-number">Bloque 2</span>
+              <span class="followup-title">Cupo y revisión</span>
+            </summary>
+            <div class="followup-rules">
+              <div class="followup-rule">
+                <span class="followup-rule-label">Frase 1 · R3</span>
+                <p>Si el capitán intenta aceptar una solicitud cuando ya no queda lugar, el sistema informa que el cupo está completo e impide una nueva aceptación.</p>
+              </div>
+              <div class="followup-rule">
+                <span class="followup-rule-label">Frase 2 · R4</span>
+                <p>Si el jugador autoriza una solicitud y se cumple al menos una de estas condiciones —su valoración conocida es menor que cuatro, o el equipo está a diez kilómetros o más—, el sistema la deriva al capitán para evaluación manual; esa evaluación no reserva un lugar.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="intro-followup-block anim-fade-up anim-delay-3">
+            <summary>
+              <span class="followup-number">Bloque 3</span>
+              <span class="followup-title">Asistencia y datos faltantes</span>
+            </summary>
+            <div class="followup-rules">
+              <div class="followup-rule">
+                <span class="followup-rule-label">Frase 1 · R5</span>
+                <p>Si el capitán aceptó al jugador y su lugar sigue reservado, el sistema permite que el jugador confirme su asistencia.</p>
+              </div>
+              <div class="followup-rule">
+                <span class="followup-rule-label">Frase 2 · R6</span>
+                <p>Si un jugador sin valoración autoriza una solicitud, el sistema indica que faltan antecedentes y la deriva a evaluación manual sin asignarle una puntuación inventada.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- Sección Regla 1: Búsqueda y Opciones Cercanas -->
-    <section id="propuesta-1" class="solution-section" data-accent="blue" aria-labelledby="r1-heading" tabindex="-1">
+    <section id="propuesta-1" class="solution-section" data-accent="gold" aria-labelledby="r1-heading" tabindex="-1">
       <div class="container">
         
         <div class="section-badge anim-fade-up">
@@ -278,10 +371,10 @@
                       <span class="arrow-tip">↓</span>
                     </div>
 
-                    <button type="button" class="diagram-node node-alternative" data-node-id="r1-action-no">
-                      <span class="d-tag tag-red">Propuesta de Diseño</span>
+                    <button type="button" class="diagram-node node-alternative node-proposal" data-node-id="r1-action-no">
+                      <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
                       <strong class="d-title">Exclusión con Sugerencias Asistidas</strong>
-                      <span class="d-sub">No muestra en cercanas. Ofrece ampliar radio o lista de espera</span>
+                      <span class="d-sub">No muestra en cercanas. Sugiere ampliar el radio o buscar otra fecha</span>
                     </button>
 
                     <div class="diagram-arrow" aria-hidden="true">
@@ -315,6 +408,10 @@
               <div class="legend-item">
                 <span class="legend-bullet bullet-red" aria-hidden="true"></span>
                 <span>Rama NO: Excepciones Asistidas (Grupo 13)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-violet" aria-hidden="true"></span>
+                <span>Violeta: Propuestas de Diseño</span>
               </div>
             </div>
 
@@ -510,45 +607,29 @@
                   <span class="arrow-tip">↓</span>
                 </div>
 
-                <!-- Nivel 2: Herramientas del Agente -->
-                <div class="diagram-row">
-                  <button type="button" class="diagram-node node-tools" data-node-id="r2-tools">
-                    <span class="d-tag tag-blue">Herramientas del Agente</span>
-                    <strong class="d-title">Auditoría de Perfil, Vacante y Reputación</strong>
-                    <span class="d-sub">Consulta historial deportivo, distancia y cupo disponible en tiempo real</span>
-                  </button>
-                </div>
-
-                <div class="diagram-arrow" aria-hidden="true">
-                  <span class="arrow-stem"></span>
-                  <span class="arrow-tip">↓</span>
-                </div>
-
-                <!-- Nivel 3: Decisión Cuádruple -->
+                <!-- Nivel 2: Verificación prioritaria del cupo -->
                 <div class="diagram-row">
                   <button type="button" class="diagram-node node-decision" data-node-id="r2-decision">
-                    <span class="d-tag tag-blue">Evaluación de Regla</span>
-                    <strong class="d-title">¿Lugar Y Distancia menor a 10 km Y Valoración mayor o igual a 4?</strong>
-                    <span class="d-sub">Comprobación simultánea de los parámetros exigidos por la sentencia</span>
+                    <span class="d-tag tag-blue">Primera Validación</span>
+                    <strong class="d-title">¿Hay lugar disponible en el equipo?</strong>
+                    <span class="d-sub">El cupo se verifica antes de auditar el perfil o enviar cualquier solicitud</span>
                   </button>
                 </div>
 
-                <!-- Nivel 4: Ramas SÍ y NO en Paralelo -->
+                <!-- Nivel 3: Sin cupo se detiene; con cupo continúa la auditoría -->
                 <div class="diagram-branches-row">
-                  
-                  <!-- Rama SÍ -->
                   <div class="diagram-branch-col">
-                    <div class="branch-pill pill-yes">SÍ: Cumple las condiciones</div>
-                    
+                    <div class="branch-pill pill-yes">SÍ: Hay lugar</div>
+
                     <div class="diagram-arrow" aria-hidden="true">
                       <span class="arrow-stem"></span>
                       <span class="arrow-tip">↓</span>
                     </div>
 
-                    <button type="button" class="diagram-node node-action" data-node-id="r2-action-yes">
-                      <span class="d-tag tag-green">Acción Obligatoria</span>
-                      <strong class="d-title">Enviar Alerta al Capitán</strong>
-                      <span class="d-sub">Despacho reactivo de notificación prioritaria con ficha técnica del jugador</span>
+                    <button type="button" class="diagram-node node-tools" data-node-id="r2-tools">
+                      <span class="d-tag tag-blue">Auditoría del Agente</span>
+                      <strong class="d-title">Revisar Distancia y Valoración</strong>
+                      <span class="d-sub">Con el cupo confirmado, consulta la distancia al partido y la valoración del jugador</span>
                     </button>
 
                     <div class="diagram-arrow" aria-hidden="true">
@@ -556,28 +637,80 @@
                       <span class="arrow-tip">↓</span>
                     </div>
 
-                    <button type="button" class="diagram-node node-end node-end-yes" data-node-id="r2-end-yes">
-                      <span class="d-tag tag-green">Fin del Flujo</span>
-                      <strong class="d-title">Solicitud Entregada</strong>
-                      <span class="d-sub">La postulación queda pendiente de aceptación final por el capitán</span>
+                    <button type="button" class="diagram-node node-decision" data-node-id="r2-quality-decision">
+                      <span class="d-tag tag-blue">Resultado de Auditoría</span>
+                      <strong class="d-title">¿Distancia menor a 10 km y valoración de al menos 4?</strong>
+                      <span class="d-sub">La solicitud solo se envía directamente si cumple ambas condiciones</span>
                     </button>
+
+                    <div class="diagram-branches-row">
+                      <div class="diagram-branch-col">
+                        <div class="branch-pill pill-yes">SÍ: Cumple ambas condiciones</div>
+
+                        <div class="diagram-arrow" aria-hidden="true">
+                          <span class="arrow-stem"></span>
+                          <span class="arrow-tip">↓</span>
+                        </div>
+
+                        <button type="button" class="diagram-node node-action" data-node-id="r2-action-yes">
+                          <span class="d-tag tag-green">Acción Obligatoria</span>
+                          <strong class="d-title">Enviar Alerta al Capitán</strong>
+                          <span class="d-sub">Se envía la solicitud con la ficha del jugador</span>
+                        </button>
+
+                        <div class="diagram-arrow" aria-hidden="true">
+                          <span class="arrow-stem"></span>
+                          <span class="arrow-tip">↓</span>
+                        </div>
+
+                        <button type="button" class="diagram-node node-end node-end-yes" data-node-id="r2-end-yes">
+                          <span class="d-tag tag-green">Fin del Flujo</span>
+                          <strong class="d-title">Solicitud Entregada</strong>
+                          <span class="d-sub">La postulación queda pendiente de aceptación final por el capitán</span>
+                        </button>
+                      </div>
+
+                      <div class="diagram-branch-col">
+                        <div class="branch-pill pill-no">NO: Requiere revisión</div>
+
+                        <div class="diagram-arrow" aria-hidden="true">
+                          <span class="arrow-stem"></span>
+                          <span class="arrow-tip">↓</span>
+                        </div>
+
+                        <button type="button" class="diagram-node node-human-spacious node-proposal" data-node-id="r2-action-no">
+                          <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
+                          <strong class="d-title">Informar al jugador</strong>
+                          <span class="d-sub">Se le informa al jugador por qué no cumple con los criterios, y que la postulación no es enviada directamente al capitán.</span>
+                        </button>
+
+                        <div class="diagram-arrow" aria-hidden="true">
+                          <span class="arrow-stem"></span>
+                          <span class="arrow-tip">↓</span>
+                        </div>
+
+                        <button type="button" class="diagram-node node-end node-end-no" data-node-id="r2-end-no">
+                          <span class="d-tag tag-red">Fin del Flujo</span>
+                          <strong class="d-title">No se envía solicitud al capitán</strong>
+                          <span class="d-sub">La solicitud no cumple con los criterios para ser enviada y termina el flujo.</span>
+                        </button>
+
+                      </div>
+                    </div>
                   </div>
 
-                  <!-- Rama NO: Nodo Amplio de Intervención Humana -->
                   <div class="diagram-branch-col">
-                    <div class="branch-pill pill-no">NO: Falla alguna condición</div>
+                    <div class="branch-pill pill-no">NO: No hay lugar</div>
 
                     <div class="diagram-arrow" aria-hidden="true">
                       <span class="arrow-stem"></span>
                       <span class="arrow-tip">↓</span>
                     </div>
 
-                    <button type="button" class="diagram-node node-human-spacious" data-node-id="r2-action-no">
-                      <span class="d-tag tag-red">Intervención Humana y Excepciones</span>
-                      <strong class="d-title">Revisión Manual del Capitán o Freno Preventivo</strong>
-                      <span class="d-sub">
-                        Si la valoración es menor a cuatro puntos, el sistema no bloquea al usuario: ofrece enviar una solicitud excepcional para que el capitán decida manualmente sin comprometer el cupo directo. En caso de pérdida concurrente de vacante, frena el despacho.
-                      </span>
+                    <button type="button" class="diagram-node node-end node-end-no node-proposal" data-node-id="r2-action-no-cupo">
+                      <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
+                      <strong class="d-title">Informar al jugador</strong>
+                      <span class="d-sub">Se le informa al jugador que no hay lugar disponible, se le ofrece la posibilidad de ser incluido en la lista de espera o continuar con la búsqueda.</span>
                     </button>
 
                     <div class="diagram-arrow" aria-hidden="true">
@@ -585,13 +718,11 @@
                       <span class="arrow-tip">↓</span>
                     </div>
 
-                    <button type="button" class="diagram-node node-end node-end-no" data-node-id="r2-end-no">
-                      <span class="d-tag tag-red">Fin del Flujo</span>
-                      <strong class="d-title">Resolución Asistida</strong>
-                      <span class="d-sub">No se reserva lugar hasta contar con aprobación humana explícita</span>
+                    <button type="button" class="diagram-node node-end node-end-no" data-node-id="r2-end-no-cupo">
+                      <span class="d-tag tag-red">Fin Definitivo</span>
+                      <strong class="d-title">No Definitivo: Cupo Completo</strong>
+                      <span class="d-sub">El flujo se detiene aquí. No se audita el perfil ni se envía ninguna solicitud al capitán.</span>
                     </button>
-                  </div>
-
                 </div>
 
               </div>
@@ -610,7 +741,11 @@
               </div>
               <div class="legend-item">
                 <span class="legend-bullet bullet-red" aria-hidden="true"></span>
-                <span>Rama NO: Intervención Humana (Grupo 13)</span>
+                <span>Rama NO: Sin cupo o revisión manual</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-bullet bullet-violet" aria-hidden="true"></span>
+                <span>Violeta: Propuestas de Diseño</span>
               </div>
             </div>
 

@@ -16,7 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollAnimatedElements = document.querySelectorAll(
     '.anim-fade-up, .anim-fade-up-slow, .anim-fade-left, .anim-scale-in'
   );
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = motionPreference.matches;
+
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    function syncHeroVideoPlayback() {
+      if (motionPreference.matches) {
+        heroVideo.pause();
+        return;
+      }
+
+      heroVideo.play().catch((error) => {
+        console.error('No se pudo reproducir el video de fondo del hero.', error);
+      });
+    }
+
+    syncHeroVideoPlayback();
+    motionPreference.addEventListener('change', syncHeroVideoPlayback);
+  }
 
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
     scrollAnimatedElements.forEach((element) => element.classList.add('in-view'));
@@ -167,8 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'Paso 4 (NO): Sugerencias Asistidas del Agente',
       tag: 'Propuesta de Diseño y Excepciones',
       inputs: 'Motivo específico del descarte (distancia excesiva, sin cupo o fecha sin partidos).',
-      tools: 'Agente de recomendación deportiva y módulo de listas de espera.',
-      description: 'El equipo no se lista en cercanas. En lugar de dejar la pantalla vacía, el agente sugiere ampliar el radio a doce kilómetros si está fuera de zona, propone fechas próximas o permite anotarse en lista de espera por si un participante cancela su asistencia.'
+      tools: 'Agente de recomendación geográfica y sugerencia de fechas.',
+      description: 'El equipo no se lista en cercanas. En lugar de dejar la pantalla vacía, el agente sugiere ampliar el radio a doce kilómetros si está fuera de zona o buscar partidos en fechas próximas.'
     },
     'r1-end-no': {
       title: 'Paso 5 (NO): Fin del Recorrido de Excepción',
@@ -186,46 +204,67 @@ document.addEventListener('DOMContentLoaded', () => {
       description: 'El jugador manifiesta su voluntad deliberada de sumarse a un equipo específico presionando el botón de postulación.'
     },
     'r2-tools': {
-      title: 'Paso 2: Herramientas del Agente Moderador',
-      tag: 'Auditoría Previa',
-      inputs: 'Identificador de usuario, datos del partido y registro del capitán.',
-      tools: 'Servicio de verificación de cupos concurrentes y Base de datos comunitaria de conducta deportiva.',
-      description: 'El agente audita en milisegundos que el cupo continúe desocupado, calcula la distancia exacta y recupera la puntuación comunitaria histórica del jugador.'
+      title: 'Paso 3: Herramientas del Agente Moderador',
+      tag: 'Auditoría posterior al cupo',
+      inputs: 'Identificador del jugador y datos del partido con lugar disponible.',
+      tools: 'Servicio de cálculo de distancia y base de datos comunitaria de valoraciones.',
+      description: 'Solo después de confirmar que hay lugar, el agente calcula la distancia exacta y recupera la valoración comunitaria del jugador.'
     },
     'r2-decision': {
-      title: 'Paso 3: Evaluación de la Regla R2',
-      tag: 'Decisión Compuesta',
-      inputs: 'Lugar disponible, distancia física, valoración comunitaria y confirmación.',
+      title: 'Paso 2: Verificación de Cupo',
+      tag: 'Primera decisión',
+      inputs: 'Estado actualizado de los lugares disponibles en el partido.',
+      tools: 'Servicio de consulta de cupos.',
+      description: 'El agente pregunta primero si queda un lugar. Si el cupo está completo, termina el flujo de forma definitiva sin auditar distancia o valoración y sin enviar la solicitud.'
+    },
+    'r2-quality-decision': {
+      title: 'Paso 4: Evaluación de Distancia y Valoración',
+      tag: 'Decisión de auditoría',
+      inputs: 'Distancia calculada y valoración comunitaria del jugador.',
       tools: 'Motor de validación de reglas.',
-      description: 'Verifica simultáneamente las cuatro condiciones: ¿Hay cupo disponible Y la distancia es menor a diez kilómetros Y la valoración es de al menos cuatro puntos Y el jugador autorizó el envío?'
+      description: 'Con un lugar disponible, comprueba si el partido está a menos de diez kilómetros y si el jugador tiene una valoración de al menos cuatro. Si cumple ambas condiciones y autorizó la postulación, envía la alerta; si no, deriva la solicitud a revisión manual sin reservar el lugar.'
     },
     'r2-action-yes': {
-      title: 'Paso 4 (SÍ): Despacho de Alerta al Capitán',
+      title: 'Paso 5 (SÍ): Despacho de Alerta al Capitán',
       tag: 'Acción Obligatoria de la Regla',
       inputs: 'Ficha técnica y antecedentes verificados del jugador.',
       tools: 'Servicio reactivo de mensajería asíncrona y notificaciones push.',
       description: 'Consecuencia directa exigida por la sentencia: se genera una alerta prioritaria en la bandeja del capitán con los datos del postulante para que concrete la admisión en un toque.'
     },
     'r2-end-yes': {
-      title: 'Paso 5 (SÍ): Solicitud en Espera de Aceptación',
+      title: 'Paso 6 (SÍ): Solicitud en Espera de Aceptación',
       tag: 'Estado Final Afirmativo',
       inputs: 'Constancia de entrega exitosa de la postulación.',
       tools: 'Bandeja de solicitudes del capitán.',
       description: 'El jugador recibe constancia de envío exitoso y el capitán dispone de la ficha para confirmar la incorporación al equipo.'
     },
     'r2-action-no': {
-      title: 'Paso 4 (NO): Intervención Humana y Freno Preventivo',
-      tag: 'Propuesta de Excepciones del Grupo',
-      inputs: 'Falla por valoración menor a cuatro puntos o conflicto de cupo por concurrencia.',
-      tools: 'Canal de derivación manual excepcional y detector de concurrencia.',
-      description: 'Si la valoración es menor a cuatro puntos, el sistema no bloquea al usuario: ofrece enviar una solicitud excepcional para que el capitán decida manualmente sin comprometer el cupo directo. En caso de agotamiento concurrente del cupo, el agente detiene el despacho de inmediato.'
+      title: 'Paso 5 (NO): Informar al jugador',
+      tag: 'Propuesta de Diseño',
+      inputs: 'Valoración menor a cuatro puntos o distancia de diez kilómetros o más.',
+      tools: 'Módulo de notificaciones al jugador.',
+      description: 'Se informa al jugador que su postulación no es enviada directamente al capitán.'
     },
     'r2-end-no': {
-      title: 'Paso 5 (NO): Resolución Asistida',
-      tag: 'Estado Final Alternativo',
-      inputs: 'Notificación de estado y opciones de reubicación.',
-      tools: 'Interfaz de usuario y notificaciones.',
-      description: 'No se asigna cupo de forma automática. El jugador es reubicado en la búsqueda o queda pendiente de la respuesta del capitán según el caso.'
+      title: 'Paso 6 (NO): No se envía solicitud al capitán',
+      tag: 'Fin del flujo',
+      inputs: 'Resultado de la auditoría de distancia y valoración.',
+      tools: 'Interfaz de estado de la postulación.',
+      description: 'La solicitud no cumple los criterios para ser enviada al capitán.'
+    },
+    'r2-action-no-cupo': {
+      title: 'Paso 3 (NO): Informar al jugador por falta de cupo',
+      tag: 'Propuesta de Diseño',
+      inputs: 'Confirmación de que el partido no tiene lugar disponible.',
+      tools: 'Módulo de notificaciones y lista de espera.',
+      description: 'Se informa al jugador que no hay lugar disponible y se ofrece incluirlo en la lista de espera o continuar con la búsqueda.'
+    },
+    'r2-end-no-cupo': {
+      title: 'Paso 4 (NO): No Definitivo por Cupo Completo',
+      tag: 'Fin definitivo',
+      inputs: 'Confirmación de que el partido no tiene lugares disponibles.',
+      tools: 'Servicio de consulta de cupos.',
+      description: 'El flujo termina sin continuar con la auditoría y no se envía ninguna solicitud al capitán.'
     }
   };
 
@@ -260,7 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (popoverNodeTag) {
       popoverNodeTag.textContent = data.tag;
       popoverNodeTag.className = 'popover-tag';
-      if (nodeId.includes('no')) {
+      if (data.tag.includes('Propuesta de Diseño')) {
+        popoverNodeTag.classList.add('tag-violet');
+      } else if (nodeId.includes('no')) {
         popoverNodeTag.classList.add('tag-red');
       } else if (nodeId.includes('yes')) {
         popoverNodeTag.classList.add('tag-green');
