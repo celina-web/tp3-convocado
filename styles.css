@@ -491,12 +491,34 @@ button {
 }
 
 .hero-title {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: clamp(1.9rem, 5.3vw, 3.1rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
   color: var(--text-main);
   margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.hero-title::before,
+.proposal-title::before,
+.demo-title::before,
+.sim-heading::before,
+.team-title::before,
+.about-title::before {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 5px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--brand-gold);
+}
+
+.hero-title::before {
+  width: 56px;
+  height: 6px;
+  margin-bottom: 18px;
 }
 
 .hero-lead {
@@ -739,11 +761,29 @@ button {
 }
 
 .proposal-title {
-  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  font-size: clamp(1.55rem, 3.8vw, 2.25rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
   margin-bottom: 12px;
-  color: var(--text-main);
+  color: var(--brand-green);
+  text-wrap: balance;
+}
+
+.solution-section[data-accent="blue"] .proposal-title::before {
+  background-color: var(--diagram-blue-border);
+}
+
+.solution-section[data-accent="blue"] .proposal-title {
+  color: var(--diagram-blue);
+}
+
+.solution-section[data-accent="green"] .proposal-title::before {
+  background-color: var(--diagram-green-border);
+}
+
+.solution-section[data-accent="green"] .proposal-title {
+  color: var(--diagram-green);
 }
 
 .proposal-benefit {
@@ -1417,11 +1457,17 @@ button {
 }
 
 .demo-title {
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
   margin: 8px 0;
-  color: var(--text-main);
+  color: var(--brand-green);
+  text-wrap: balance;
+}
+
+.demo-title::before {
+  background-color: var(--brand-gold);
 }
 
 .demo-sub {
@@ -1870,11 +1916,13 @@ button {
 }
 
 .sim-heading {
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
   margin: 8px 0;
-  color: var(--text-main);
+  color: var(--brand-green);
+  text-wrap: balance;
 }
 
 .sim-sub {
@@ -2098,10 +2146,13 @@ button {
 }
 
 .team-title {
-  font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+  font-size: clamp(1.55rem, 3.8vw, 2.2rem);
   font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
   margin: 12px 0;
-  color: var(--text-main);
+  color: var(--brand-green);
+  text-wrap: balance;
 }
 
 .about-section {
@@ -2117,9 +2168,16 @@ button {
 
 .about-title {
   margin: 8px 0;
-  color: var(--text-main);
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--brand-green);
+  font-size: clamp(1.6rem, 3.8vw, 2.2rem);
   font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.about-title::before {
+  margin: 0 auto 14px;
 }
 
 .about-intro {
