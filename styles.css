@@ -2944,6 +2944,10 @@ button {
   box-shadow: var(--shadow-card);
 }
 
+.js-scroll-animations .intro-rule-card.anim-scale-in.in-view:hover {
+  transform: translateY(-3px);
+}
+
 .intro-rule-card:focus-visible {
   outline: 3px solid var(--brand-gold);
   outline-offset: 3px;
