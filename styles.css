@@ -2547,10 +2547,6 @@ button {
     gap: 24px;
   }
 
-  [data-diagram="r2"] > .diagram-flow-grid > .diagram-branches-row > .diagram-branch-col:first-child {
-    flex: 2;
-  }
-
   .nav-link {
     font-size: 0.9rem;
   }
