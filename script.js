@@ -163,9 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'r1-decision': {
       title: 'Paso 3: Evaluación de la Regla R1',
       tag: 'Decisión Lógica Proposicional',
-      inputs: 'Estado de vacante, correspondencia de fecha y distancia calculada en kilómetros.',
+      inputs: 'Existencia de lugar para la fecha buscada y distancia calculada en kilómetros.',
       tools: 'Motor de inferencia de reglas lógicas.',
-      description: 'Evalúa la conjunción estricta: ¿El equipo tiene lugar disponible Y la fecha coincide Y la distancia es estrictamente menor a diez kilómetros? Si alguna premisa es falsa, bifurca hacia la rama alternativa.'
+      description: 'Evalúa las dos condiciones de R1: que haya lugar para la fecha buscada y que la distancia sea menor a diez kilómetros. La fecha se verifica como parte de la disponibilidad del lugar, no como una condición adicional.'
     },
     'r1-action-yes': {
       title: 'Paso 4 (SÍ): Publicar en Opciones Cercanas',
@@ -182,26 +182,26 @@ document.addEventListener('DOMContentLoaded', () => {
       description: 'El deportista visualiza los detalles del partido (horario, cancha, cupo) y queda habilitado para iniciar su postulación.'
     },
     'r1-action-no': {
-      title: 'Paso 4 (NO): Sugerencias Asistidas del Agente',
+      title: 'Paso 4 (NO): Ofrecer Ajustar la Búsqueda',
       tag: 'Propuesta de Diseño y Excepciones',
       inputs: 'Motivo específico del descarte (distancia excesiva, sin cupo o fecha sin partidos).',
-      tools: 'Agente de recomendación geográfica y sugerencia de fechas.',
-      description: 'El equipo no se lista en cercanas. En lugar de dejar la pantalla vacía, el agente sugiere ampliar el radio a doce kilómetros si está fuera de zona o buscar partidos en fechas próximas.'
+      tools: 'Agente de recomendación para ajustar parámetros de búsqueda.',
+      description: 'El equipo no se lista en opciones cercanas. Como propuesta del grupo, se ofrece ajustar la búsqueda sin presentar como cercanos partidos que no cumplen R1.'
     },
     'r1-end-no': {
-      title: 'Paso 5 (NO): Fin del Recorrido de Excepción',
-      tag: 'Estado Final Alternativo',
-      inputs: 'Alternativas contextuales presentadas al usuario.',
-      tools: 'Panel de configuración de alertas.',
-      description: 'El usuario conserva el control: decide si amplía su radio de búsqueda, elige otra fecha o activa una alerta para recibir avisos de nuevos partidos.'
+      title: 'Paso 5 (NO): Búsqueda finalizada',
+      tag: 'Estado final',
+      inputs: 'Resultado negativo de la validación de la Regla R1.',
+      tools: 'Motor de reglas de búsqueda.',
+      description: 'Después de ofrecer el ajuste de búsqueda, el flujo termina. No se muestran resultados de equipos que no cumplen R1.'
     },
 
     'r2-start': {
-      title: 'Paso 1: Solicitud de Postulación',
+      title: 'Paso 1: Solicitud de Postulación Autorizada',
       tag: 'Evento Inicial',
-      inputs: 'Identificador del partido seleccionado y confirmación del jugador.',
+      inputs: 'Identificador del partido seleccionado, datos de postulación y autorización expresa del jugador.',
       tools: 'Interfaz de postulación directa.',
-      description: 'El jugador manifiesta su voluntad deliberada de sumarse a un equipo específico presionando el botón de postulación.'
+      description: 'El jugador autoriza el envío al iniciar la postulación para un equipo específico.'
     },
     'r2-tools': {
       title: 'Paso 3: Herramientas del Agente Moderador',
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: 'Decisión de auditoría',
       inputs: 'Distancia calculada y valoración comunitaria del jugador.',
       tools: 'Motor de validación de reglas.',
-      description: 'Con un lugar disponible, comprueba si el partido está a menos de diez kilómetros y si el jugador tiene una valoración de al menos cuatro. Si cumple ambas condiciones y autorizó la postulación, envía la alerta; si no, deriva la solicitud a revisión manual sin reservar el lugar.'
+      description: 'Con un lugar disponible y la postulación autorizada desde el inicio, comprueba si el partido está a menos de diez kilómetros y si el jugador alcanza una valoración de al menos cuatro. La interpretación de la escala sobre cinco puntos es una decisión del grupo.'
     },
     'r2-action-yes': {
       title: 'Paso 5 (SÍ): Despacho de Alerta al Capitán',
@@ -236,14 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: 'Estado Final Afirmativo',
       inputs: 'Constancia de entrega exitosa de la postulación.',
       tools: 'Bandeja de solicitudes del capitán.',
-      description: 'El jugador recibe constancia de envío exitoso y el capitán dispone de la ficha para confirmar la incorporación al equipo.'
+      description: 'El jugador recibe constancia de envío exitoso. La solicitud queda pendiente de la decisión del capitán.'
     },
     'r2-action-no': {
-      title: 'Paso 5 (NO): Informar al jugador',
+      title: 'Paso 5 (NO): Informar que no cumple los criterios',
       tag: 'Propuesta de Diseño',
       inputs: 'Valoración menor a cuatro puntos o distancia de diez kilómetros o más.',
       tools: 'Módulo de notificaciones al jugador.',
-      description: 'Se informa al jugador que su postulación no es enviada directamente al capitán.'
+      description: 'Se informa al jugador que su solicitud no se envía al capitán porque no cumple los criterios de distancia o valoración de R2.'
     },
     'r2-end-no': {
       title: 'Paso 6 (NO): No se envía solicitud al capitán',
@@ -260,11 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
       description: 'Se informa al jugador que no hay lugar disponible y se ofrece incluirlo en la lista de espera o continuar con la búsqueda.'
     },
     'r2-end-no-cupo': {
-      title: 'Paso 4 (NO): No Definitivo por Cupo Completo',
-      tag: 'Fin definitivo',
+      title: 'Paso 4 (NO): Cupo completo, solicitud no enviada',
+      tag: 'Fin del flujo',
       inputs: 'Confirmación de que el partido no tiene lugares disponibles.',
       tools: 'Servicio de consulta de cupos.',
-      description: 'El flujo termina sin continuar con la auditoría y no se envía ninguna solicitud al capitán.'
+      description: 'El flujo termina sin auditar distancia o valoración y sin enviar la solicitud. La búsqueda o lista de espera se ofrece como una opción aparte.'
     }
   };
 
@@ -417,9 +417,9 @@ document.addEventListener('DOMContentLoaded', () => {
      5. Simulador Interactivo de Sentencias Proposicionales
      ========================================================================== */
   const selectLugar = document.getElementById('sim-lugar');
-  const selectFecha = document.getElementById('sim-fecha');
   const rangeDistancia = document.getElementById('sim-distancia');
   const rangeValoracion = document.getElementById('sim-valoracion');
+  const checkAutorizacion = document.getElementById('sim-autorizacion');
 
   const valDistanciaDisplay = document.getElementById('distancia-val');
   const valValoracionDisplay = document.getElementById('valoracion-val');
@@ -435,14 +435,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const auditList = document.getElementById('audit-list');
 
   function evaluateSimulator() {
-    if (!selectLugar || !selectFecha || !rangeDistancia || !rangeValoracion) {
+    if (!selectLugar || !rangeDistancia || !rangeValoracion || !checkAutorizacion) {
       return;
     }
 
     const tieneLugar = selectLugar.value === 'si';
-    const fechaCoincide = selectFecha.value === 'si';
     const distancia = parseFloat(rangeDistancia.value);
     const valoracion = parseFloat(rangeValoracion.value);
+    const autoriza = checkAutorizacion.checked;
 
     if (valDistanciaDisplay) {
       valDistanciaDisplay.textContent = distancia + ' km';
@@ -452,61 +452,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Regla 1 (R1)
-    const r1Cumple = tieneLugar && fechaCoincide && (distancia < 10);
+    const r1Cumple = tieneLugar && (distancia < 10);
 
     if (boxR1 && msgR1 && badgeR1) {
       if (r1Cumple) {
         boxR1.className = 'result-box result-success';
         badgeR1.className = 'result-status-badge badge-ok';
         badgeR1.textContent = 'MUESTRA';
-        msgR1.textContent = 'Cumple las tres condiciones simultáneas. El equipo tiene lugar, la fecha coincide y la distancia (' + distancia + ' km) es menor a 10 km. El sistema lo muestra entre las opciones cercanas.';
+        msgR1.textContent = 'Cumple las dos condiciones de R1: hay lugar para la fecha buscada y la distancia (' + distancia + ' km) es menor a 10 km. El sistema lo muestra entre las opciones cercanas.';
       } else {
         boxR1.className = 'result-box result-failure';
         badgeR1.className = 'result-status-badge badge-block';
         badgeR1.textContent = 'NO MUESTRA';
         
         const motivos = [];
-        if (!tieneLugar) motivos.push('el equipo no tiene lugar');
-        if (!fechaCoincide) motivos.push('la fecha no coincide con la buscada');
+        if (!tieneLugar) motivos.push('no hay lugar para la fecha buscada');
         if (distancia >= 10) motivos.push('la distancia es de ' + distancia + ' km (mayor o igual a 10 km)');
         
-        msgR1.textContent = 'No se muestra en cercanas porque ' + motivos.join(', ') + '. El agente ofrece sugerencias o radios ampliados.';
+        msgR1.textContent = 'No se muestra en opciones cercanas porque ' + motivos.join(', ') + '. Se puede ajustar la búsqueda, sin mostrar este equipo como cercano.';
       }
     }
 
     // Regla 2 (R2)
-    const r2Cumple = tieneLugar && (distancia < 10) && (valoracion >= 4.0);
+    const r2Cumple = tieneLugar && (distancia < 10) && (valoracion >= 4.0) && autoriza;
 
     if (boxR2 && msgR2 && badgeR2) {
       if (r2Cumple) {
         boxR2.className = 'result-box result-success';
         badgeR2.className = 'result-status-badge badge-ok';
         badgeR2.textContent = 'ENVÍA';
-        msgR2.textContent = 'Cumple los requisitos objetivos. Hay lugar, la distancia (' + distancia + ' km) es menor a 10 km y la valoración (' + valoracion.toFixed(1) + ') es igual o superior a 4 puntos. El sistema envía la solicitud formal al capitán.';
+        msgR2.textContent = 'Cumple las cuatro condiciones de R2: hay lugar, la distancia (' + distancia + ' km) es menor a 10 km, la valoración (' + valoracion.toFixed(1) + ') alcanza el mínimo de 4 y el jugador autoriza. El sistema envía la solicitud al capitán, quien decide si acepta.';
       } else {
         boxR2.className = 'result-box result-failure';
         badgeR2.className = 'result-status-badge badge-block';
         badgeR2.textContent = 'NO ENVÍA';
 
         const motivos = [];
-        if (valoracion < 4.0) motivos.push('la valoración (' + valoracion.toFixed(1) + ') es inferior a 4');
-        if (distancia >= 10) motivos.push('la distancia (' + distancia + ' km) es mayor o igual a 10 km');
-        if (!tieneLugar) motivos.push('el equipo no dispone de cupo');
+        if (!tieneLugar) {
+          motivos.push('no hay lugar para la fecha solicitada');
+        } else {
+          if (distancia >= 10) motivos.push('la distancia (' + distancia + ' km) no es menor a 10 km');
+          if (valoracion < 4.0) motivos.push('la valoración (' + valoracion.toFixed(1) + ') es inferior a 4');
+          if (!autoriza) motivos.push('el jugador no autoriza el envío');
+        }
 
-        msgR2.textContent = 'La solicitud no se envía directamente al capitán porque ' + motivos.join(', ') + '. ' + 
-          (valoracion < 4.0 && tieneLugar && distancia < 10 
-            ? 'El agente ofrece derivación a revisión manual del capitán.' 
-            : 'El flujo se detiene de forma segura.');
+        msgR2.textContent = 'La solicitud no se envía al capitán porque ' + motivos.join(', ') + (tieneLugar ? '.' : '. No se auditan distancia ni valoración al faltar cupo.');
       }
     }
 
     if (auditList) {
       auditList.innerHTML = '';
       const items = [
-        'Lugar disponible: ' + (tieneLugar ? 'SÍ' : 'NO'),
-        'Coincidencia de fecha: ' + (fechaCoincide ? 'SÍ' : 'NO'),
-        'Distancia calculada: ' + distancia + ' km (Criterio menor a 10 km: ' + (distancia < 10 ? 'VÁLIDO' : 'EXCEDIDO') + ')',
-        'Puntuación del jugador: ' + valoracion.toFixed(1) + ' puntos (Piso de 4.0: ' + (valoracion >= 4.0 ? 'APROBADO' : 'INSUFICIENTE') + ')'
+        'Lugar para la fecha buscada: ' + (tieneLugar ? 'SÍ' : 'NO'),
+        'Distancia calculada: ' + (tieneLugar ? distancia + ' km (Criterio menor a 10 km: ' + (distancia < 10 ? 'VÁLIDO' : 'EXCEDIDO') + ')' : 'NO AUDITADA: falta lugar'),
+        'Valoración: ' + (tieneLugar ? valoracion.toFixed(1) + ' (Umbral de 4: ' + (valoracion >= 4.0 ? 'CUMPLE' : 'NO CUMPLE') + ')' : 'NO AUDITADA: falta lugar'),
+        'Autorización de envío: ' + (tieneLugar ? (autoriza ? 'SÍ' : 'NO') : 'NO REQUERIDA: falta lugar')
       ];
 
       items.forEach((txt) => {
@@ -520,14 +520,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Presets de 1 Clic para Evaluación Docente
   const btnPresetIdeal = document.getElementById('preset-ideal');
   const btnPresetRadio = document.getElementById('preset-radio');
-  const btnPresetRevision = document.getElementById('preset-revision');
+  const btnPreset10Km = document.getElementById('preset-10km');
+  const btnPresetValoracion = document.getElementById('preset-valoracion');
 
   if (btnPresetIdeal) {
     btnPresetIdeal.addEventListener('click', () => {
       selectLugar.value = 'si';
-      selectFecha.value = 'si';
       rangeDistancia.value = '5';
       rangeValoracion.value = '4.8';
+      checkAutorizacion.checked = true;
       evaluateSimulator();
     });
   }
@@ -535,24 +536,34 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnPresetRadio) {
     btnPresetRadio.addEventListener('click', () => {
       selectLugar.value = 'si';
-      selectFecha.value = 'si';
       rangeDistancia.value = '14';
       rangeValoracion.value = '4.5';
+      checkAutorizacion.checked = true;
       evaluateSimulator();
     });
   }
 
-  if (btnPresetRevision) {
-    btnPresetRevision.addEventListener('click', () => {
+  if (btnPreset10Km) {
+    btnPreset10Km.addEventListener('click', () => {
       selectLugar.value = 'si';
-      selectFecha.value = 'si';
-      rangeDistancia.value = '6';
-      rangeValoracion.value = '3.2';
+      rangeDistancia.value = '10';
+      rangeValoracion.value = '4.5';
+      checkAutorizacion.checked = true;
       evaluateSimulator();
     });
   }
 
-  [selectLugar, selectFecha, rangeDistancia, rangeValoracion].forEach((element) => {
+  if (btnPresetValoracion) {
+    btnPresetValoracion.addEventListener('click', () => {
+      selectLugar.value = 'si';
+      rangeDistancia.value = '6';
+      rangeValoracion.value = '4.0';
+      checkAutorizacion.checked = true;
+      evaluateSimulator();
+    });
+  }
+
+  [selectLugar, rangeDistancia, rangeValoracion, checkAutorizacion].forEach((element) => {
     if (element) {
       element.addEventListener('input', evaluateSimulator);
       element.addEventListener('change', evaluateSimulator);

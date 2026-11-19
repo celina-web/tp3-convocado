@@ -184,8 +184,7 @@
                 Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.
               </blockquote>
               <div class="intro-rule-conditions" aria-label="Condiciones de la regla R1">
-                <span class="condition-chip"><span aria-hidden="true">✓</span> Hay lugar</span>
-                <span class="condition-chip"><span aria-hidden="true">✓</span> Coincide la fecha</span>
+                <span class="condition-chip"><span aria-hidden="true">✓</span> Hay lugar para la fecha buscada</span>
                 <span class="condition-chip"><span aria-hidden="true">✓</span> A menos de 10 km</span>
               </div>
               <p class="intro-rule-result result-nearby">Aparece entre las opciones cercanas</p>
@@ -327,8 +326,8 @@
                 <div class="diagram-row">
                   <button type="button" class="diagram-node node-decision" data-node-id="r1-decision">
                     <span class="d-tag tag-blue">Evaluación de Regla</span>
-                    <strong class="d-title">¿Tiene lugar Y fecha coincide Y distancia menor a 10 km?</strong>
-                    <span class="d-sub">Evaluación simultánea de las tres condiciones de la sentencia</span>
+                    <strong class="d-title">¿Tiene lugar para la fecha buscada y está a menos de 10 km?</strong>
+                    <span class="d-sub">Las dos condiciones de la regla R1 se evalúan en conjunto</span>
                   </button>
                 </div>
 
@@ -373,8 +372,8 @@
 
                     <button type="button" class="diagram-node node-alternative node-proposal" data-node-id="r1-action-no">
                       <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
-                      <strong class="d-title">Exclusión con Sugerencias Asistidas</strong>
-                      <span class="d-sub">No muestra en cercanas. Sugiere ampliar el radio o buscar otra fecha</span>
+                      <strong class="d-title">Ofrecer Ajustar la Búsqueda</strong>
+                      <span class="d-sub">El equipo no aparece entre las opciones cercanas; se puede ajustar la búsqueda</span>
                     </button>
 
                     <div class="diagram-arrow" aria-hidden="true">
@@ -384,8 +383,8 @@
 
                     <button type="button" class="diagram-node node-end node-end-no" data-node-id="r1-end-no">
                       <span class="d-tag tag-red">Fin del Flujo</span>
-                      <strong class="d-title">Esperar o Ajustar Parámetros</strong>
-                      <span class="d-sub">El jugador decide si amplía radio o activa alertas</span>
+                      <strong class="d-title">Búsqueda finalizada</strong>
+                      <span class="d-sub">No se muestran resultados que no cumplan la regla</span>
                     </button>
                   </div>
 
@@ -459,7 +458,7 @@
                       </div>
                       <div class="data-block-text">
                         <span class="data-block-label">Fecha Buscada</span>
-                        <span class="data-block-desc">Día y franja horaria en la que el deportista desea disputar el encuentro.</span>
+                        <span class="data-block-desc">Fecha en la que el deportista desea disputar el encuentro.</span>
                       </div>
                     </div>
 
@@ -491,14 +490,14 @@
               </button>
               <div id="r1-panel-2" class="accordion-panel" role="region" aria-labelledby="r1-trig-2" hidden>
                 <div class="panel-body">
-                  <p><strong>Principio de Temporalidad Vigente:</strong></p>
-                  <p>Una fecha buscada no puede ser una fecha vencida o pretérita respecto al momento de la consulta. Para garantizar la integridad temporal de las búsquedas, la propuesta aplica una estrategia de validación en dos capas:</p>
+                  <p><strong>Decisión del grupo:</strong> se ofrecen fechas vigentes y la coincidencia se valida como parte de que haya un lugar para la fecha buscada. No se agrega como una tercera condición a R1.</p>
+                  <p>Para evitar búsquedas de fechas pasadas, la propuesta aplica una validación de vigencia en dos capas:</p>
                   <ul class="data-list">
                     <li><strong>Capa de Interfaz en Front End:</strong> Los selectores de fecha restringen automáticamente los días pasados bloqueando su selección mediante atributos de límite temporal mínimo, aplicando el principio de prevención de errores de Nielsen.</li>
                     <li><strong>Capa de Servicio y Agente:</strong> Sanitización estricta previa a la consulta para neutralizar cualquier inyección manual de parámetros con fechas anteriores a la fecha actual.</li>
                   </ul>
                   <div class="code-box">
-                    <code>(equipo.cupos_disponibles > 0) Y (partido.fecha == fecha_buscada) Y (distancia_km < 10) Y (fecha_buscada >= fecha_actual)</code>
+                    <code>(hay_lugar_para_fecha_buscada) Y (distancia_km &lt; 10) · fecha_buscada &gt;= fecha_actual (validación de diseño)</code>
                   </div>
                 </div>
               </div>
@@ -531,7 +530,7 @@
                 <div class="panel-body">
                   <p>Cuando una o más condiciones no se cumplen, la regla normativa ordena no mostrar el equipo en opciones cercanas. Como aporte de diseño (Nivel Propone), el agente no abandona la búsqueda y despliega tres respuestas especializadas según el motivo:</p>
                   <ul class="data-list">
-                    <li><strong>Si falla por distancia mayor a diez kilómetros:</strong> El agente detecta sedes en zonas aledañas y sugiere ampliar el radio a doce o quince kilómetros.</li>
+                    <li><strong>Si falla por distancia de diez kilómetros o más:</strong> El agente ofrece ajustar el radio; los resultados fuera del límite no se muestran como opciones cercanas de la búsqueda original.</li>
                     <li><strong>Si falla por fecha sin partidos:</strong> El agente analiza los días subsiguientes y sugiere fechas cercanas con alta convocatoria deportiva.</li>
                     <li><strong>Si falla por cupo completado:</strong> El agente ofrece activar una lista de espera inteligente para notificar al jugador si algún integrante cancela su asistencia a último momento.</li>
                   </ul>
@@ -568,7 +567,7 @@
             <span class="animated-underline">Solución Agéntica 2: Validador de Postulaciones y Moderador Deportivo</span>
           </h2>
           <p class="proposal-benefit anim-fade-up anim-delay-3" tabindex="0">
-            Un agente mediador asegura la calidad y seguridad de los encuentros filtrando de forma automática las postulaciones según distancia, cupo y reputación comunitaria de 4 o más puntos. Facilita la comunicación directa con el capitán y gestiona revisiones especiales cuando no se alcanzan los parámetros estándar.
+            Un agente mediador valida la disponibilidad del cupo, la distancia, la valoración y la autorización del jugador antes de enviar la solicitud al capitán. La escala de valoración sobre cinco puntos es una decisión de diseño del grupo; la regla original solo establece el umbral mínimo de cuatro.
           </p>
         </div>
 
@@ -597,8 +596,8 @@
                 <div class="diagram-row">
                   <button type="button" class="diagram-node node-start" data-node-id="r2-start">
                     <span class="d-tag">Inicio</span>
-                    <strong class="d-title">Solicitud de Postulación</strong>
-                    <span class="d-sub">El jugador manifiesta su voluntad expresa de incorporarse al partido</span>
+                    <strong class="d-title">Solicitud de Postulación Autorizada</strong>
+                    <span class="d-sub">El jugador autoriza el envío de su solicitud al iniciar la postulación</span>
                   </button>
                 </div>
 
@@ -640,7 +639,7 @@
                     <button type="button" class="diagram-node node-decision" data-node-id="r2-quality-decision">
                       <span class="d-tag tag-blue">Resultado de Auditoría</span>
                       <strong class="d-title">¿Distancia menor a 10 km y valoración de al menos 4?</strong>
-                      <span class="d-sub">La solicitud solo se envía directamente si cumple ambas condiciones</span>
+                      <span class="d-sub">La escala sobre cinco puntos es una decisión de diseño del grupo</span>
                     </button>
 
                     <div class="diagram-branches-row">
@@ -655,7 +654,7 @@
                         <button type="button" class="diagram-node node-action" data-node-id="r2-action-yes">
                           <span class="d-tag tag-green">Acción Obligatoria</span>
                           <strong class="d-title">Enviar Alerta al Capitán</strong>
-                          <span class="d-sub">Se envía la solicitud con la ficha del jugador</span>
+                          <span class="d-sub">Se envía la solicitud autorizada con la ficha del jugador</span>
                         </button>
 
                         <div class="diagram-arrow" aria-hidden="true">
@@ -666,22 +665,22 @@
                         <button type="button" class="diagram-node node-end node-end-yes" data-node-id="r2-end-yes">
                           <span class="d-tag tag-green">Fin del Flujo</span>
                           <strong class="d-title">Solicitud Entregada</strong>
-                          <span class="d-sub">La postulación queda pendiente de aceptación final por el capitán</span>
+                          <span class="d-sub">Queda pendiente de aceptación final por el capitán</span>
                         </button>
                       </div>
 
                       <div class="diagram-branch-col">
-                        <div class="branch-pill pill-no">NO: Requiere revisión</div>
+                        <div class="branch-pill pill-no">NO: No cumple los criterios</div>
 
                         <div class="diagram-arrow" aria-hidden="true">
                           <span class="arrow-stem"></span>
                           <span class="arrow-tip">↓</span>
                         </div>
 
-                        <button type="button" class="diagram-node node-human-spacious node-proposal" data-node-id="r2-action-no">
+                        <button type="button" class="diagram-node node-alternative node-proposal" data-node-id="r2-action-no">
                           <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
                           <strong class="d-title">Informar al jugador</strong>
-                          <span class="d-sub">Se le informa al jugador por qué no cumple con los criterios, y que la postulación no es enviada directamente al capitán.</span>
+                          <span class="d-sub">Se informa al jugador por qué no cumple los criterios; la solicitud no se envía al capitán.</span>
                         </button>
 
                         <div class="diagram-arrow" aria-hidden="true">
@@ -719,9 +718,9 @@
                     </div>
 
                     <button type="button" class="diagram-node node-end node-end-no" data-node-id="r2-end-no-cupo">
-                      <span class="d-tag tag-red">Fin Definitivo</span>
-                      <strong class="d-title">No Definitivo: Cupo Completo</strong>
-                      <span class="d-sub">El flujo se detiene aquí. No se audita el perfil ni se envía ninguna solicitud al capitán.</span>
+                      <span class="d-tag tag-red">Fin del Flujo</span>
+                      <strong class="d-title">Cupo completo: solicitud no enviada</strong>
+                      <span class="d-sub">No se audita el perfil ni se envía la solicitud al capitán. La búsqueda o lista de espera es una opción aparte.</span>
                     </button>
                 </div>
 
@@ -741,7 +740,7 @@
               </div>
               <div class="legend-item">
                 <span class="legend-bullet bullet-red" aria-hidden="true"></span>
-                <span>Rama NO: Sin cupo o revisión manual</span>
+                <span>Rama NO: solicitud no enviada</span>
               </div>
               <div class="legend-item">
                 <span class="legend-bullet bullet-violet" aria-hidden="true"></span>
@@ -806,7 +805,20 @@
                       </div>
                       <div class="data-block-text">
                         <span class="data-block-label">Valoración del Jugador</span>
-                        <span class="data-block-desc">Calificación comunitaria histórica con un piso mínimo de cuatro puntos sobre cinco.</span>
+                        <span class="data-block-desc">Se verifica que alcance cuatro puntos. Interpretar la valoración en una escala sobre cinco es una decisión de diseño del grupo.</span>
+                      </div>
+                    </div>
+
+                    <div class="data-block">
+                      <div class="data-block-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12l4 4L19 6"></path>
+                          <path d="M12 22a10 10 0 110-20 10 10 0 010 20z"></path>
+                        </svg>
+                      </div>
+                      <div class="data-block-text">
+                        <span class="data-block-label">Autorización del Jugador</span>
+                        <span class="data-block-desc">Confirmación expresa para enviar la solicitud al capitán.</span>
                       </div>
                     </div>
 
@@ -837,7 +849,7 @@
               <div id="r2-panel-2" class="accordion-panel" role="region" aria-labelledby="r2-trig-2" hidden>
                 <div class="panel-body">
                   <p><strong>Significado de «enviar la solicitud al capitán»:</strong></p>
-                  <p>No se trata únicamente de guardar un registro estático en una base de datos. En nuestra propuesta agéntica, representa el disparo de un <strong>evento asíncrono de alerta prioritaria</strong>. El agente construye una notificación con los datos esenciales (nombre del jugador, valoración de 4 o más estrellas y distancia exacta) para que el capitán reciba el aviso en tiempo real en su dispositivo y pueda decidir en un solo toque.</p>
+                  <p>No se trata únicamente de guardar un registro estático en una base de datos. En nuestra propuesta agéntica, representa el disparo de un <strong>evento asíncrono de alerta prioritaria</strong>. El agente construye una notificación con los datos esenciales (nombre del jugador, valoración y distancia exacta) para que el capitán reciba el aviso en tiempo real en su dispositivo y pueda decidir si acepta la solicitud. Interpretar la valoración en una escala sobre cinco puntos es una decisión de diseño del grupo.</p>
                   <div class="code-box">
                     <code>evento = DespacharAlertaPrioritaria(capitan_id, ficha_jugador, estado="pendiente")</code>
                   </div>
@@ -870,10 +882,10 @@
               </button>
               <div id="r2-panel-4" class="accordion-panel" role="region" aria-labelledby="r2-trig-4" hidden>
                 <div class="panel-body">
-                  <p><strong>Caso límite 1: Valoración menor a cuatro puntos (Intervención Humana)</strong></p>
-                  <p>La regla prohíbe el envío estándar. Como decisión de diseño, el sistema no bloquea definitivamente al jugador: le informa con claridad que su perfil no califica para envío directo y le ofrece la alternativa de enviar una solicitud con justificación para evaluación manual del capitán.</p>
+                  <p><strong>Caso límite 1: No se cumple la distancia o la valoración de R2</strong></p>
+                  <p>La solicitud no se envía al capitán y se informa al jugador cuál criterio no cumplió. La revisión manual corresponde a las reglas R4 y R6, no a esta solución R2.</p>
                   <p><strong>Caso límite 2: Pérdida simultánea de vacante por concurrencia</strong></p>
-                  <p>Si dos jugadores postulan al mismo tiempo y el cupo se completa justo antes del envío, el agente detecta el conflicto de concurrencia en tiempo real, frena el despacho para no generar falsas expectativas y reubica inmediatamente al jugador en el buscador de opciones.</p>
+                  <p>Si dos jugadores postulan al mismo tiempo y el cupo se completa justo antes del envío, el agente detecta el conflicto, frena el despacho y comunica que la solicitud no fue enviada.</p>
                 </div>
               </div>
             </div>
@@ -1037,7 +1049,7 @@
                     </div>
                     <div class="meta-row">
                       <span class="m-label">Criterio R2:</span>
-                      <strong class="m-val text-green">Aprobación automática</strong>
+                      <strong class="m-val text-green">Pendiente de decisión del capitán</strong>
                     </div>
                   </div>
 
@@ -1049,8 +1061,8 @@
 
                 <div class="captain-empty-note" id="demo-captain-accepted" hidden>
                   <div class="check-circle">✓</div>
-                  <strong>¡Jugador Confirmado!</strong>
-                  <p>Lucas M. fue incorporado al partido. El cupo quedó cubierto.</p>
+                  <strong>Solicitud recibida</strong>
+                  <p>El capitán aceptó manualmente la solicitud. Lucas M. fue incorporado al partido y el cupo quedó cubierto.</p>
                 </div>
 
                 <div class="app-notice">
@@ -1083,7 +1095,8 @@
             <div class="preset-buttons">
               <button type="button" class="preset-btn" id="preset-ideal">Caso Exitoso Completo</button>
               <button type="button" class="preset-btn" id="preset-radio">Caso Límite: Fuera de Radio</button>
-              <button type="button" class="preset-btn" id="preset-revision">Caso Límite: Revisión Manual</button>
+              <button type="button" class="preset-btn" id="preset-10km">R2: Distancia exacta de 10 km</button>
+              <button type="button" class="preset-btn" id="preset-valoracion">R2: Valoración exacta de 4,0</button>
             </div>
           </div>
         </div>
@@ -1097,18 +1110,10 @@
             <form id="simulator-form" class="sim-form" onsubmit="event.preventDefault();">
               
               <div class="form-group">
-                <label for="sim-lugar" class="form-label">Disponibilidad de Lugar:</label>
+                <label for="sim-lugar" class="form-label">Lugar para la fecha solicitada:</label>
                 <select id="sim-lugar" class="form-select">
-                  <option value="si" selected>Tiene lugar disponible</option>
-                  <option value="no">Cupo agotado (Sin lugar)</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="sim-fecha" class="form-label">Coincidencia de Fecha:</label>
-                <select id="sim-fecha" class="form-select">
-                  <option value="si" selected>Coincide con la fecha buscada</option>
-                  <option value="no">Fecha diferente</option>
+                  <option value="si" selected>Hay lugar en esa fecha</option>
+                  <option value="no">No hay lugar para esa fecha</option>
                 </select>
               </div>
 
@@ -1138,6 +1143,13 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <label class="form-label authorization-label" for="sim-autorizacion">
+                  <input type="checkbox" id="sim-autorizacion" checked>
+                  El jugador autoriza el envío
+                </label>
+              </div>
+
             </form>
           </div>
 
@@ -1152,7 +1164,7 @@
                 <span class="result-status-badge badge-ok">MUESTRA</span>
               </div>
               <p class="result-text" id="r1-result-message">
-                El equipo tiene cupo, la fecha coincide y la distancia es menor a 10 km. El sistema lo muestra en las opciones cercanas.
+                Hay lugar para la fecha buscada y la distancia es menor a 10 km. El sistema lo muestra en las opciones cercanas.
               </p>
             </div>
 
@@ -1163,7 +1175,7 @@
                 <span class="result-status-badge badge-ok">ENVÍA</span>
               </div>
               <p class="result-text" id="r2-result-message">
-                Cumple cupo, distancia menor a 10 km y valoración mayor o igual a 4.0. La solicitud es enviada al capitán.
+                Cumple cupo, distancia menor a 10 km, valoración mínima de 4 y autorización del jugador. La solicitud se envía al capitán para que decida si acepta.
               </p>
             </div>
 
@@ -1371,9 +1383,9 @@
         <p><strong>1. Naturaleza de la Plataforma</strong></p>
         <p>Convocado es un entorno deportivo destinado a facilitar el contacto entre deportistas y capitanes de equipo para encuentros recreativos.</p>
         <p><strong>2. Reglas de Convocatoria y Cupos</strong></p>
-        <p>La visualización de partidos cercanos y la admisión de solicitudes se encuentran sujetas a la existencia comprobada de vacantes reales, radio geográfico menor a diez kilómetros y calificación comunitaria igual o superior a cuatro puntos.</p>
+        <p>Para mostrar un partido como cercano, debe haber lugar para la fecha buscada y estar a menos de diez kilómetros (R1). Para enviar una solicitud al capitán, además se requiere valoración de al menos cuatro y autorización del jugador (R2). La aceptación final queda a decisión del capitán.</p>
         <p><strong>3. Gestión Transparente</strong></p>
-        <p>La postulación se envía de forma directa cuando se cumplen los parámetros normativos de la comunidad.</p>
+        <p>La solicitud se envía al capitán cuando hay lugar, la distancia es menor a diez kilómetros, la valoración alcanza cuatro puntos y el jugador autoriza. El capitán decide si acepta al jugador.</p>
         <p><strong>4. Alcance Académico</strong></p>
         <p>Este sitio web constituye una propuesta conceptual elaborada en el marco de la cursada de Desarrollo de Sistemas Web del IFTS 29, basada en requerimientos lógicos del IFTS 16.</p>
       </div>
