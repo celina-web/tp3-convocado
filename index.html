@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convocado: Propuesta Agéntica y Flujos de Solución</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
   <meta name="description" content="Landing page del Grupo 13 para la startup Convocado. Presentación de dos propuestas agénticas, diagramas de flujo interactivos en CSS con tarjetas flotantes, demo y detalles.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,10 +29,12 @@
     <div class="header-container">
       <div class="brand-identity">
         <img src="assets/logo_convocado.webp" alt="Logotipo oficial de Convocado" class="brand-logo" width="44" height="55">
-        <div class="brand-titles">
-          <span class="brand-name">Convocado</span>
-          <span class="brand-badge">Grupo 13</span>
-        </div>
+        <a href="#" class="brand-link" aria-label="Convocado, volver al inicio">
+          <div class="brand-titles">
+            <span class="brand-name">Convocado</span>
+            <span class="brand-badge">Grupo 13</span>
+          </div>
+        </a>
       </div>
 
       <nav class="site-nav" aria-label="Navegación principal">
@@ -373,7 +376,9 @@
                     <button type="button" class="diagram-node node-alternative node-proposal" data-node-id="r1-action-no">
                       <span class="d-tag tag-violet">⭐ Propuesta de Diseño</span>
                       <strong class="d-title">Ofrecer Ajustar la Búsqueda</strong>
-                      <span class="d-sub">El equipo no aparece entre las opciones cercanas; se puede ajustar la búsqueda</span>
+                      <span class="d-sub">Sin resultados cercanos: ningún equipo cumple las condiciones de R1. Como
+                        propuesta del grupo, el agente ofrece ampliar el rango o cambiar la fecha. 
+                      </span>
                     </button>
 
                     <div class="diagram-arrow" aria-hidden="true">

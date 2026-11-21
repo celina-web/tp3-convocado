@@ -262,6 +262,11 @@ a {
   text-decoration: none;
 }
 
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 button {
   font: inherit;
   cursor: pointer;

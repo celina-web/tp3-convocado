@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: 'Propuesta de Diseño y Excepciones',
       inputs: 'Motivo específico del descarte (distancia excesiva, sin cupo o fecha sin partidos).',
       tools: 'Agente de recomendación para ajustar parámetros de búsqueda.',
-      description: 'El equipo no se lista en opciones cercanas. Como propuesta del grupo, se ofrece ajustar la búsqueda sin presentar como cercanos partidos que no cumplen R1.'
+      description: 'Los equipos que no cumplen las condiciones de R1 no aparecen entre las opciones cercanas. Si ningún equipo las cumple, el agente le informa al jugador que no hay resultados con esos criterios. Como propuesta del grupo, le ofrece ampliar el rango de búsqueda o cambiar la fecha; los equipos que aparezcan a 10 km o más se muestran aparte, como información, y nunca como opciones cercanas.'
     },
     'r1-end-no': {
       title: 'Paso 5 (NO): Búsqueda finalizada',
