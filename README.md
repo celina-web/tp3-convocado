@@ -1,100 +1,132 @@
-# Convocado: Propuesta de Solución Agéntica y Flujos Operativos
+# Convocado: propuesta de solución agéntica y flujos operativos
 
-## Trabajo Práctico 3 · Desarrollo de Sistemas Web · IFTS 29 · 2026
+**Trabajo Práctico 3 · Desarrollo de Sistemas Web · IFTS 29 · 2026**
 
-* **Grupo Asignado:** Grupo 13
-* **Startup:** Convocado
-* **Rubro:** Deportes y conexión de equipos
-* **Objetivo de la Startup:** Red para que jugadores encuentren equipos y soliciten participar en partidos.
-* **Bloque Asignado:** Búsqueda y solicitud (Código de sorteo docente S08.A)
-* **Sentencias Asignadas:**
-  * **Frase 1 (R1):** «Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.»
-  * **Frase 2 (R2):** «Si el equipo tiene lugar, está a menos de diez kilómetros, el jugador tiene valoración de al menos cuatro y autoriza la solicitud, el sistema envía esa solicitud al capitán.»
+| | |
+|---|---|
+| **Grupo** | 13 |
+| **Startup** | Convocado |
+| **Rubro** | Deportes y conexión de equipos |
+| **Objetivo de la startup** | Red para que jugadores encuentren equipos y soliciten participar en partidos. |
+| **Bloque asignado** | Búsqueda y solicitud (código de sorteo S08.A) |
+| **Repositorio** | https://github.com/celina-web/tp3-convocado |
+| **Landing publicada** | https://tp3-convocado-grupo13.vercel.app |
 
----
+## Sentencias asignadas
 
-## 1. Integrantes del Grupo y Distribución de Tareas
-
-* **Coordinación de Instrucciones al Agente:** Celina (Prompting, especificación de requerimientos lógicos y de diseño).
-* **Revisión Lógica y Flujos Proposicionales:** Revisión de condiciones compuestas, temporalidad y validación en doble capa.
-* **Pruebas de Accesibilidad y Responsive:** Verificación de navegación por teclado, contraste cromático, vista mobile y desktop.
-* **Documentación y Preparación de Publicación:** Redacción del README, registro de iteraciones y verificación de enlaces.
-
-### Evidencia de Colaboración y Mejora Grupal (Nivel Propone)
-Durante la revisión del equipo, se incorporaron tres mejoras sustantivas de arquitectura y presentación:
-1. **Diagramas de Flujo Interactivos en CSS:** Se reemplazaron los gráficos estáticos por flujogramas interactivos en HTML y CSS accesibles. Cada nodo es clickeable y cuenta con un inspector dinámico que detalla las herramientas consultadas y las decisiones adoptadas.
-2. **Especialización del Camino del NO:** Para R1, si no se cumplen las condiciones, el equipo no se muestra como cercano; como propuesta de diseño, se ofrece ajustar la búsqueda. Para R2, la autorización se expresa en el inicio del diagrama y luego se comprueba el cupo, la distancia y la valoración. Si no se cumplen los criterios de envío, la solicitud no se envía al capitán; las revisiones manuales pertenecen a R4 y R6.
-3. **Demostración de Interfaz Móvil y Presets:** Se construyeron dos mockups interactivos de celular en CSS puro (Vista Jugador y Vista Capitán) y cuatro botones de prueba rápida para agilizar la comprobación docente.
+- **Frase 1 (R1):** «Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.»
+- **Frase 2 (R2):** «Si el equipo tiene lugar, está a menos de diez kilómetros, el jugador tiene valoración de al menos cuatro y autoriza la solicitud, el sistema envía esa solicitud al capitán.»
 
 ---
 
-## 2. Desarme Lógico de las Sentencias
+## 1. Integrantes y aportes
 
-### Ficha de Sentencia 1 (R1)
-* **Texto Original:** «Si un equipo tiene lugar para la fecha buscada y está a menos de diez kilómetros del jugador, el sistema lo muestra entre las opciones cercanas.»
-* **Datos Necesarios:** Coordenadas del jugador, fecha deseada y base de datos de partidos con vacantes y geolocalización de canchas.
-* **Condición Lógica:** `(hay_lugar_para_fecha_buscada) Y (distancia_km < 10)`.
-* **Consecuencia SÍ:** Se incorpora a la lista de opciones cercanas visibles al deportista.
-* **Decisión de Diseño del Grupo:** La fecha se verifica como parte de que haya un lugar para la fecha buscada, no como una condición adicional. Se limita la búsqueda a fechas vigentes. Si no se cumple R1, se puede ofrecer ajustar la búsqueda, sin mostrar como cercanos equipos que no cumplen el radio.
+> Completar con los datos reales de cada persona. Cada fila debe decir qué hizo concretamente.
 
-### Ficha de Sentencia 2 (R2)
-* **Texto Original:** «Si el equipo tiene lugar, está a menos de diez kilómetros, el jugador tiene valoración de al menos cuatro y autoriza la solicitud, el sistema envía esa solicitud al capitán.»
-* **Datos Necesarios:** Vacantes activas del equipo, distancia en kilómetros, valoración del jugador, autorización expresa y canal de contacto del capitán.
-* **Condición Lógica:** `(equipo.cupo > 0) Y (distancia < 10) Y (jugador.valoracion >= 4) Y (autorizacion_explicita)`.
-* **Consecuencia SÍ:** Despacho reactivo de alerta prioritaria a la bandeja del capitán del equipo.
-* **Decisión de Diseño del Grupo:** La escala de valoración sobre cinco puntos es una interpretación de la consigna, que solo fija el umbral mínimo de cuatro.
-* **Caso límite (NO):** Si falta cupo, no se audita el perfil ni se envía la solicitud. Si falla distancia, valoración o autorización, tampoco se envía al capitán. La revisión manual corresponde a R4 y R6, no a R2. Si el cupo se agota concurrentemente antes del envío, se frena el despacho.
+| Integrante | Rol | Qué hizo (aporte concreto) |
+|---|---|---|
+| Celina Tarn| Coordinación de instrucciones al agente | Redacción de los prompts y especificación de los requerimientos lógicos y de diseño. |
+| Jair Sebastian Sarango Guaman | Revisión lógica y flujos proposicionales | [Qué revisó: condiciones compuestas, ramas del NO, casos límite.] |
+| Valentina Belén Sánchez | Pruebas de accesibilidad y responsive | [Qué probó: teclado, contraste, vista mobile y desktop.] |
+| Agustín Cisneros Poggio | Documentación y publicación | [Qué hizo: README, registro de iteraciones, verificación de enlaces.] |
+
+### Cómo trabajó el equipo
+
+- **Reuniones:** hicimos una reunión breve de 15 minutos por Discord para entender la consigna y acordar cómo encarar el trabajo. Se repasaron las sentencias asignadas, el alcance del bloque de búsqueda y solicitud, y se definió organizar el desarrollo con instrucciones iterativas al agente, revisión lógica de las condiciones, pruebas de accesibilidad/responsive y documentación/publicación.
+
+- **Decisiones tomadas en equipo:** 
+
+1. **Flujos interactivos en lugar de diagramas estáticos.** Se reemplazaron los
+   diagramas estáticos por flujos en HTML y CSS donde cada nodo es clickeable y
+   abre un inspector con las herramientas que consulta el agente y las decisiones
+   adoptadas. Además, las propuestas de diseño del grupo se distinguen visualmente
+   de los requisitos de la sentencia, para que el lector sepa qué dice la regla y
+   qué agregamos nosotros. Se sumaron mockups mobile y botones de prueba para
+   recorrer los casos exitosos y los casos límite.
+
+2. **Las propuestas no invaden otras reglas.** Las propuestas propias se limitan a
+   lo que la sentencia no define. En R2, cuando no se cumple un criterio, el flujo
+   termina en "no se envía la solicitud" y no crea ningún otro camino para que
+   llegue al capitán; ese tratamiento le corresponde a otras reglas (R4 y R6), no
+   a nuestro bloque.
+
+3. **Contexto de la empresa sin desarrollar los otros bloques.** Se mencionan los
+   bloques 2 y 3 solo para mostrar el recorrido completo de Convocado. No se
+   desarrollan ni forman parte de esta entrega, que trabaja únicamente R1 y R2.
+
+
+
+### Mejoras incorporadas tras la revisión
+
+1. **Diagramas de flujo interactivos en HTML y CSS.** Se reemplazaron los gráficos estáticos. Cada nodo es clickeable y un inspector detalla las herramientas consultadas y las decisiones adoptadas.
+2. **Camino del NO especificado.** En R1, si no se cumplen las condiciones, el equipo no se muestra como cercano; como propuesta de diseño, se ofrece ajustar la búsqueda. En R2, se comprueban cupo, distancia, valoración y autorización; si algo falla, la solicitud no se envía al capitán. Las revisiones manuales pertenecen a R4 y R6 (otros bloques).
+3. **Demo de interfaz móvil y presets.** Dos mockups de celular en CSS (vista jugador y vista capitán) y botones de prueba rápida para comprobar los casos.
 
 ---
 
-## 3. Registro de Herramientas de IA y Construcción Agéntica
+## 2. Desarme lógico de las sentencias
 
-El proyecto fue desarrollado bajo la premisa obligatoria de **construcción 100% agéntica**, dirigiendo al agente mediante instrucciones iterativas sin editar código manualmente.
+### Sentencia 1 (R1)
 
-* **Entorno de Trabajo (Aplicación):** Antigravity IDE
-* **Modelo Seleccionado:** Gemini 3.8 Flash
-* **Uso Asignado:** Análisis de consigna en PDF, extracción cromática del logotipo, diseño de la arquitectura mobile first, diagramación interactiva en CSS puro, construcción de mockups de celular interactivos, lógica accesible en JavaScript y redacción documental.
+- **Datos necesarios:** coordenadas del jugador, fecha deseada y registro de equipos con vacantes y ubicación de sus canchas.
+- **Condición lógica:** `(hay_lugar_para_fecha_buscada) Y (distancia_km < 10)`
+- **Consecuencia (SÍ):** el equipo se incorpora a las opciones cercanas visibles.
+- **Decisión de diseño del grupo:** la fecha forma parte de "hay lugar para la fecha buscada", no es una tercera condición. Si no se cumple R1, se puede ofrecer ajustar la búsqueda, sin mostrar como cercanos equipos que no cumplen el radio.
 
-### Evidencia de Iteración y Corrección (Nivel Propone)
-* **Instrucción Inicial:** Diseñar la landing page con modo nocturno y colores del logo de Convocado.
-* **Problema Detectado en la Revisión:** Los diagramas necesitaban reflejar con claridad las condiciones de las reglas y separar las propuestas de diseño de los requisitos normativos.
-* **Pedido de Mejora al Agente:** Migrar los diagramas hacia componentes en HTML y CSS puro completamente clickeables con inspector dinámico de nodos, y distinguir las propuestas de diseño de los resultados normativos.
-* **Resultado:** La interfaz ofrece flujogramas interactivos fluidos, responsivos y con lectura espaciosa para todos los casos límite.
+### Sentencia 2 (R2)
+
+- **Datos necesarios:** vacantes del equipo, distancia en kilómetros, valoración del jugador, autorización expresa y canal del capitán.
+- **Condición lógica:** `(equipo.cupo > 0) Y (distancia < 10) Y (jugador.valoracion >= 4) Y (autorizacion_explicita)`
+- **Consecuencia (SÍ):** el sistema envía la solicitud a la bandeja del capitán. La aceptación final la decide el capitán.
+- **Decisión de diseño del grupo:** la escala de valoración sobre cinco puntos es una interpretación nuestra; la regla solo fija el mínimo de cuatro.
+- **Casos límite:** a exactamente 10 km no se cumple (la regla dice "menos de diez"); con valoración exactamente 4,0 sí se cumple. Si falta cupo, no se audita el perfil ni se envía la solicitud. Si falla distancia, valoración o autorización, tampoco se envía.
 
 ---
 
-## 4. Instrucciones para Reproducir el Proyecto Localmente
+## 3. Herramientas de IA y construcción agéntica
 
-1. Clonar el repositorio oficial:
+El proyecto se desarrolló bajo construcción 100% agéntica: se dirigió al agente con instrucciones iterativas, sin editar código manualmente.
+
+- **Aplicación 1:** Antigravity IDE
+  - **Modelo:** Gemini 3.8 Flash
+  - **Uso:** análisis de la consigna, extracción de la paleta del logotipo, arquitectura mobile first, diagramas interactivos, mockups, lógica accesible en JavaScript y redacción documental.
+
+- **Aplicación 2:** GitHub Copilot en VSC
+  - **Modelo:** GPT-6 Luna
+- **Uso:** Ajustes y refinamiento sobre la base construida en Antigravity:
+    - Modificaciones de diseño, incluidos los cambios de color.
+    - Implementación de transiciones y animaciones.
+    - Corrección de errores.
+    - Conversión de los diagramas de SVG a HTML y CSS, con nodos clickeables.
+
+### Evidencia de iteración
+
+- **Instrucción inicial:** diseñar la landing con modo nocturno y los colores del logo de Convocado.
+- **Problema detectado:** los diagramas no reflejaban con claridad las condiciones y mezclaban las propuestas de diseño con los requisitos de las reglas. No estaba centrado.
+- **Pedido de mejora:** migrar a componentes HTML y CSS clickeables con inspector de nodos y distinguir las propuestas de diseño de los resultados normativos.
+- **Resultado:** flujogramas interactivos y responsivos que cubren los casos límite.
+
+---
+
+## 4. Cómo ejecutar el proyecto localmente
+
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/celina-web/tp3-convocado.git
 cd tp3-convocado
+open index.html        # macOS; o bien: npx serve .
 ```
 
-2. Abrir el archivo `index.html` directamente en cualquier navegador moderno:
-```bash
-# En macOS
-open index.html
+**Qué probar:**
 
-# O mediante un servidor local ligero
-npx serve .
-```
-
-3. Comprobación de funcionamiento:
-* Probar el botón de alternancia entre Modo Claro y Modo Nocturno.
-* Interactuar con los diagramas en CSS: hacer clic sobre cualquier nodo (Inicio, Herramientas, Decisión, Ramas) para observar cómo el inspector inferior detalla entradas, herramientas y acciones.
-* Interactuar con la demo de celulares: presionar «Postularme» en el teléfono del jugador y luego «Aceptar en el Equipo» en el teléfono del capitán.
-* Probar los 4 botones de presets del simulador: caso exitoso, fuera de radio, distancia exacta de 10 km y valoración exacta de 4,0. Comprobar también que sin autorización no se envía la solicitud.
-* Revisar la sección «¿Qué es Convocado?» entre el hero y la Regla 1: R1 y R2 quedan visibles en tarjetas, y los bloques 2 y 3 se despliegan con teclado o clic.
-* Desplazarse por la página para comprobar las entradas animadas, los subrayados y los acentos de color de cada sección. Las animaciones respetan la preferencia de movimiento reducido del sistema.
-* Revisar la sección «Sobre Nosotros» al final de la página y reemplazar los cuatro nombres y textos de ejemplo por los datos del equipo.
-* Desplegar los apartados técnicos mediante clic o teclado (Enter o Barra Espaciadora).
-* Para leer las sentencias y la descripción de cada solución con teclado, usa Tab para recorrer sus textos; al entrar desde un enlace de regla, el foco llega a la sección correspondiente.
-* Abrir y cerrar los modales de Términos del Servicio y Política de Privacidad desde el pie de página.
+1. Alternar entre modo claro y nocturno.
+2. Hacer clic (o usar Tab y Enter) en los nodos de los diagramas para ver el inspector.
+3. En el simulador, usar los presets: caso exitoso, fuera de radio, distancia exacta de 10 km y valoración exacta de 4,0. Comprobar que sin autorización no se envía la solicitud.
+4. Abrir y cerrar los desplegables y los modales de Términos y Privacidad con teclado.
+5. Revisar la vista en mobile y en desktop.
 
 ---
 
-## 5. Publicación y Enlaces
+## 5. Enlaces
 
-* **Repositorio del Proyecto:** Pendiente de enlace por el grupo
-* **Landing Page Publicada:** Pendiente de publicación por el grupo (ejemplo GitHub Pages o Vercel)
+- **Repositorio:** https://github.com/celina-web/tp3-convocado
+- **Landing publicada:** https://tp3-convocado-grupo13.vercel.app
