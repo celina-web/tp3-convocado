@@ -55,13 +55,6 @@
    desarrollan ni forman parte de esta entrega, que trabaja únicamente R1 y R2.
 
 
-
-### Mejoras incorporadas tras la revisión
-
-1. **Diagramas de flujo interactivos en HTML y CSS.** Se reemplazaron los gráficos estáticos. Cada nodo es clickeable y un inspector detalla las herramientas consultadas y las decisiones adoptadas.
-2. **Camino del NO especificado.** En R1, si no se cumplen las condiciones, el equipo no se muestra como cercano; como propuesta de diseño, se ofrece ajustar la búsqueda. En R2, se comprueban cupo, distancia, valoración y autorización; si algo falla, la solicitud no se envía al capitán. Las revisiones manuales pertenecen a R4 y R6 (otros bloques).
-3. **Demo de interfaz móvil y presets.** Dos mockups de celular en CSS (vista jugador y vista capitán) y botones de prueba rápida para comprobar los casos.
-
 ---
 
 ## 2. Desarme lógico de las sentencias
