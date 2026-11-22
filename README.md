@@ -21,7 +21,6 @@
 
 ## 1. Integrantes y aportes
 
-> Completar con los datos reales de cada persona. Cada fila debe decir qué hizo concretamente.
 
 | Integrante | Rol | Qué hizo (aporte concreto) |
 |---|---|---|
