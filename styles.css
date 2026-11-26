@@ -651,21 +651,24 @@ button {
 }
 
 .logo-box {
-  width: 72px;
-  height: 90px;
+  width: 84px;
+  height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--bg-surface-alt);
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-md);
-  padding: 6px;
+  padding: 5px;
+  overflow: hidden;
 }
 
 .startup-logo-img {
-  max-width: 100%;
-  max-height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  object-position: center;
 }
 
 .startup-name {
@@ -2341,6 +2344,16 @@ button {
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
+  min-height: 55px;
+}
+
+.footer-logo-wrap img {
+  display: block;
+  width: 44px;
+  height: 55px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .footer-brand-title {
@@ -2503,6 +2516,18 @@ button {
 }
 
 @media (min-width: 768px) {
+  .convocado-intro-brand {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    text-align: left;
+  }
+
+  .convocado-intro-content {
+    max-width: 700px;
+  }
+
   .site-nav {
     display: block;
   }
@@ -2848,10 +2873,30 @@ button {
 }
 
 .convocado-intro-header {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto 36px;
-  text-align: center;
   color: var(--intro-text);
+}
+
+.convocado-intro-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.convocado-intro-logo {
+  display: block;
+  width: clamp(112px, 18vw, 160px);
+  height: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.convocado-intro-content {
+  max-width: 760px;
 }
 
 .intro-eyebrow {
