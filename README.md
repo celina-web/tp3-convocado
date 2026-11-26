@@ -25,9 +25,9 @@
 | Integrante | Rol | Qué hizo (aporte concreto) |
 |---|---|---|
 | Celina Tarn| Coordinación de instrucciones al agente | Redacción de los prompts y especificación de los requerimientos lógicos y de diseño. |
-| Jair Sebastian Sarango Guaman | Revisión lógica y flujos proposicionales | [Qué revisó: condiciones compuestas, ramas del NO, casos límite.] |
-| Valentina Belén Sánchez | Pruebas de accesibilidad y responsive | [Qué probó: teclado, contraste, vista mobile y desktop.] |
-| Agustín Cisneros Poggio | Documentación y publicación | [Qué hizo: README, registro de iteraciones, verificación de enlaces.] |
+| Jair Sebastian Sarango Guaman | Revisión lógica y flujos proposicionales | Revisión de las condiciones compuestas de R1 y R2 y de las ramas del NO de cada flujo. Definió los casos límite (distancia exacta de 10 km y valoración exacta de 4,0) y que las propuestas no invadan las reglas R4 y R6. |
+| Valentina Belén Sánchez | Pruebas de accesibilidad y responsive | Pruebas de navegación con teclado en los nodos de los diagramas, los desplegables y los modales, revisión de contraste en modo claro y nocturno, y control de la vista en mobile y desktop. |
+| Agustín Cisneros Poggio | Documentación y publicación | Redacción del README y del registro de iteraciones, desarme lógico de las sentencias y verificación de los enlaces del repositorio y de la landing desde una ventana sin sesión. |
 
 ### Cómo trabajó el equipo
 
@@ -90,6 +90,8 @@ El proyecto se desarrolló bajo construcción 100% agéntica: se dirigió al age
     - Implementación de transiciones y animaciones.
     - Corrección de errores.
     - Conversión de los diagramas de SVG a HTML y CSS, con nodos clickeables.
+    - Actualizar el README.
+    - Agregar al README la sección de comprobación de enlaces y funcionamiento.
 
 ### Evidencia de iteración
 
@@ -122,3 +124,23 @@ open index.html        # macOS; o bien: npx serve .
 
 - **Repositorio:** https://github.com/celina-web/tp3-convocado
 - **Landing publicada:** https://tp3-convocado-grupo13.vercel.app
+
+---
+
+## 6. Comprobación de enlaces y funcionamiento
+
+Verificación realizada en Chrome (desktop) desde una ventana de incógnito, sin sesión iniciada.
+
+| # | Qué se comprobó | Resultado |
+|---|---|---|
+| 1 | El repositorio abre sin sesión y muestra el README | ✅ |
+| 2 | La landing publicada abre sin sesión y muestra la versión final | ✅ |
+| 3 | Los enlaces del README llevan a la landing correcta | ✅ |
+| 4 | El logo de Convocado se ve completo y legible | ✅ |
+| 5 | La navegación del encabezado lleva a cada sección | ✅ |
+| 6 | Los desplegables de R1 y R2 se abren y cierran con clic y con teclado (Tab + Enter) | ✅ |
+| 7 | Los nodos de los diagramas abren el inspector con clic y con teclado | ✅ |
+| 8 | Caso que cumple R1: el simulador muestra al equipo entre las opciones cercanas | ✅ |
+| 9 | Caso que no cumple R2 (distancia exacta de 10 km o sin autorización): no se envía la solicitud | ✅ |
+| 10 | El cambio entre modo claro y nocturno funciona | ✅ |
+| 11 | Sin desbordes horizontales ni errores en la consola del navegador | ✅ |
